@@ -18,6 +18,11 @@ const Gig = ({history, gig, showControls, deleteGig}) => {
         history.push("/gigs")
     }
 
+    function handleEdit(event) {
+        event.preventDefault()
+        history.push(`/gigs/edit/${gig._id}`)
+    }
+
     const {name, date, generalLocation, capacity} = gig
 
     return (
@@ -30,8 +35,9 @@ const Gig = ({history, gig, showControls, deleteGig}) => {
 			<p>Capacity: {capacity}</p>
             {showControls && (
                 <div>
-                <button onClick={handleDelete}>Delete</button>
-                <button>Apply!</button>
+                    <button onClick={handleEdit}>Update</button>
+                    <button onClick={handleDelete}>Delete</button>  
+                    <button>Apply!</button>
                 </div>
                 )}
         </div>
