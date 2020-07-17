@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
-const Gig = ({gig, showControls}) => {
+const Gig = ({history, gig, showControls, deleteGig}) => {
 
     // If we don't have a post, return null
     if (!gig) return null
@@ -11,7 +11,13 @@ const Gig = ({gig, showControls}) => {
         textDecoration: 'none',
         color: 'black' 
     }
-    console.log("showControls: ", showControls)
+
+    function handleDelete(event) {
+        event.preventDefault()
+        deleteGig(gig._id)
+        history.push("/gigs")
+    }
+
     const {name, date, generalLocation, capacity} = gig
 
     return (
@@ -22,7 +28,12 @@ const Gig = ({gig, showControls}) => {
 			<p>Date: {date.toLocaleString()}</p>
 			<p>General Location: {generalLocation}</p>
 			<p>Capacity: {capacity}</p>
-            {showControls && <button>Apply!</button>}
+            {showControls && (
+                <div>
+                <button onClick={handleDelete}>Delete</button>
+                <button>Apply!</button>
+                </div>
+                )}
         </div>
     )
 }
