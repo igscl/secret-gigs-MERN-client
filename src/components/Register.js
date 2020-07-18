@@ -1,16 +1,7 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
 
-// const Register = ({history, registerUser}) => {
-//     //state for controlled form
-//     const initialFormState = {
-//         username: "",
-//         email: "",
-//         phoneNumber: "",
-//         password: ""
-//     } 
 
-//
 function Register(props) {
     const {handleRegister, history} = props
       //state for controlled form
