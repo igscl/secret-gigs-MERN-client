@@ -28,8 +28,9 @@ function Register(props) {
         event.preventDefault()
         handleRegister(userDetails, history)
     }
-        // registerUser(userDetails)
-        // history.push("/")
+//         registerUser(userDetails)
+//         history.push("/")
+// }
     
     return (
         <form onSubmit={handleSubmit}>

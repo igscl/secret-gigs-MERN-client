@@ -23,11 +23,7 @@ const Login = (props) => {
 
     }
   
-    // function handleSubmit(event) {
-    //     event.preventDefault()
-    //     loginUser(userDetails)
-    //     history.push("/")
-    // }
+  
     return (
         <form onSubmit={handleSubmit}>
             <div style={divStyles}>

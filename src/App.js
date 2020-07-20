@@ -10,6 +10,7 @@ import NewGig from './components/NewGig'
 import EditGig from './components/EditGig'
 import Register from './components/Register'
 import Login from './components/Login'
+import Profile from './components/Profile'
 import NotFound from './components/NotFound'
 
 
@@ -19,6 +20,22 @@ const App = () => {
     setGigs(gigsData)
   }, [])
   
+useEffect(() => {
+    //check local storage for a logged in user
+    const user = getUserFromLocalStorage();
+    user && setLoggedInUser(user) 
+}, [])
+  // setting up local storage
+ function setUserinLocalStorage(user) {
+    user ? localStorage.setItem("loggedInUser", user)
+    : localStorage.removeItem("loggedInUser")
+  }
+
+  //get user from local storage
+  function getUserFromLocalStorage() {
+    return localStorage.getItem("loggedInUser")
+  }
+
   //returns a single gig based on id provided
   function getGigFromId (id) {
     return gigs.find((gig) => gig._id === parseInt(id))
@@ -53,19 +70,29 @@ const App = () => {
   
   //Register user
   function handleRegister(user, history) {
-    setLoggedInUser(user.username)
+    setLoggedInUser(user.username);
+    setUserinLocalStorage(user.username);
     history.push("/")
   }
 
 // login user
   function handleLogin(user, history) {
     setLoggedInUser(user.username)
+    setUserinLocalStorage(user.username)
     history.push("/")
   }
 
   //logout user
+  //clearing local storage in logout
   function handleLogout(){
     setLoggedInUser(null)
+    setUserinLocalStorage(null)
+  }
+
+
+  function showProfile(user) {
+    setLoggedInUser(user)
+    // history.push("/")
   }
 
   return (
@@ -82,6 +109,7 @@ const App = () => {
       <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} updateGig={updateGig} /> } />
       <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} />
       <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />  
+      <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />  
       <Route component={NotFound} />
       </Switch> 
       </BrowserRouter>
