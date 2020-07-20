@@ -50,6 +50,10 @@ function Register(props) {
                 <label style={labelStyles}>Password</label>
                 <input style={inputStyles} required type="password" value= {userDetails.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
             </div>
+            <label for="avatar">Choose a profile picture:</label>
+            <div>
+            <input style={inputStyles} type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></input>
+            </div>
             <input type="submit" value="Register"></input>
             
         </form>
