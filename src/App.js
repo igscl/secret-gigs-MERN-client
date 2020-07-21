@@ -29,7 +29,7 @@ const App = () => {
 
   const [store, dispatch] = useReducer(stateReducer, initialState)
 
-  const { gigs, loggedInUser }= store;
+  const { gigs} = store;
 
   useEffect(() => {
     //setGigs(gigsData)
@@ -131,14 +131,15 @@ const App = () => {
 
   //logout user
   //clearing local storage in logout
-  function handleLogout(){
-    // setLoggedInUser(null)
-    // setUserinLocalStorage(null)
-    dispatch ({
-      type: "setLoggedInUser",
-      data: null
-    })
-  }
+  //moved onto nav when using global state
+  // function handleLogout(){
+  //   // setLoggedInUser(null)
+  //   // setUserinLocalStorage(null)
+  //   dispatch ({
+  //     type: "setLoggedInUser",
+  //     data: null
+  //   })
+  // }
 
   function showProfile(user, history) {
     // setLoggedInUser(user.username)
@@ -154,7 +155,8 @@ const App = () => {
     <div>
        <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
-      <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} />
+      <Nav />
+      {/* <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} /> */}
       <h1>Secret gig</h1>
       <Switch>
       <Route exact path="/" component={Home} />
