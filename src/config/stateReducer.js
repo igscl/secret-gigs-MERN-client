@@ -7,12 +7,26 @@ export default function (state, action) {
                 loggedInUser: action.data
             }
         }
-        // case "setBlogPosts": {
-        //     return {
-        //         ...state,
-        //         blogPosts: action.data
-        //     }
-        // }
+
+        case "setGigs": {
+            return {
+                ...state,
+                gigs: action.data
+            }
+        }
+        case "updateGig":
+            const otherGig = state.gigs.filter((gig) => gig._id !== parseInt(action.data._id))
+            return {
+                ...state,
+                gigs: [...otherGig, action.data]
+            }
+
+        case "deleteGig":
+            const otherGigs = state.gigs.filter((gig) => gig._id !== parseInt(action.data._id))
+            return {
+                ...state,
+                gigs: otherGigs
+            }
         default: 
             return state
     }

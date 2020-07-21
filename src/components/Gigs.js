@@ -1,11 +1,15 @@
 import React from 'react'
 import Gig from "./Gig"
+import { useGlobalState } from '../config/globalState'
 
 
-const Gigs = ({gigData}) => {
+const Gigs = () => {
+
+    const {store} = useGlobalState()
+    const {gigs} = store
     return (
         <div>
-        {gigData.sort((a,b) => b.date - a.date)
+        {gigs.sort((a,b) => b.date - a.date)
         .map((gig) => <Gig key={gig._id} gig={gig} showControls={false}/>)}
         </div>
     )
