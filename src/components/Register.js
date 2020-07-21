@@ -1,15 +1,18 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
-import {useGlobalState} from '../config/globalState' 
-import {setUserInSessionStorage} from '../services/authServices'
 
+// const Register = ({history, registerUser}) => {
+//     //state for controlled form
+//     const initialFormState = {
+//         username: "",
+//         email: "",
+//         phoneNumber: "",
+//         password: ""
+//     } 
 
-// function Register(props) {
-//     const {handleRegister, history} = props
-
-const Register = ({history}) => {
-    const {dispatch} = useGlobalState()
-
+//
+function Register(props) {
+    const {handleRegister, history} = props
       //state for controlled form
     const initialFormState = {
         username: "",
@@ -18,7 +21,7 @@ const Register = ({history}) => {
         password: ""
     } 
 
-     const [userDetails,setUserDetails] = useState(initialFormState)
+    const [userDetails,setUserDetails] = useState(initialFormState)
 
     //change handler
     function handleChange(event) {
@@ -32,17 +35,10 @@ const Register = ({history}) => {
     //submit handler
     function handleSubmit(event) {
         event.preventDefault()
-        setUserInSessionStorage(userDetails.username)
-        dispatch ({
-            type: "setLoggedInUser",
-            data: userDetails
-            })
-            history.push("/")
-        // handleRegister(userDetails, history)
+        handleRegister(userDetails, history)
     }
-//         registerUser(userDetails)
-//         history.push("/")
-// }
+        // registerUser(userDetails)
+        // history.push("/")
     
     return (
         <form onSubmit={handleSubmit}>
@@ -61,10 +57,6 @@ const Register = ({history}) => {
             <div style={divStyles}>
                 <label style={labelStyles}>Password</label>
                 <input style={inputStyles} required type="password" value= {userDetails.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
-            </div>
-            <label for="avatar">Choose a profile picture:</label>
-            <div>
-            <input style={inputStyles} type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></input>
             </div>
             <input type="submit" value="Register"></input>
             

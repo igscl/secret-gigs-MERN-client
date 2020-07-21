@@ -7,33 +7,25 @@ export default function (state, action) {
                 loggedInUser: action.data
             }
         }
-        case 'setAdmin':
-			return {
-				...state,
-				adminUser: action.data,
-			};
+
         case "setGigs": {
             return {
                 ...state,
                 gigs: action.data
             }
         }
-        case "addGig":
-            return {
-                ...state,
-                gigs: [action.data, ...state.gigs]
-            }
         case "updateGig":
             const otherGig = state.gigs.filter((gig) => gig._id !== parseInt(action.data._id))
             return {
                 ...state,
                 gigs: [...otherGig, action.data]
             }
+
         case "deleteGig":
-            const updatedGig = state.gigs.filter((gig) => gig._id !== parseInt(action.data))
+            const otherGigs = state.gigs.filter((gig) => gig._id !== parseInt(action.data._id))
             return {
                 ...state,
-                gigs: updatedGig
+                gigs: otherGigs
             }
         default: 
             return state

@@ -1,11 +1,8 @@
 import React, {useState} from 'react'
-import {useGlobalState} from '../config/globalState'
 
 //styling
-const NewGig = ({history, nextId}) => {
-
-    const {dispatch} = useGlobalState();
-
+const NewGig = ({history, addNewGig, nextId}) => {
+    
     const divStyles = {
         display: 'grid',
         width: '100vw',
@@ -45,11 +42,7 @@ function handleSubmit(event) {
         generalLocation: formState.generalLocation,
         capacity: formState.capacity,
     }
-    dispatch ({
-        type: "addGig",
-        data: nextGig
-    })
-    // addNewGig(nextGig)
+    addNewGig(nextGig)
     //  history.push("/")
    history.push(`/gigs/${nextId}`)
 }

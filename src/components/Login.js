@@ -1,13 +1,8 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
-import  {useGlobalState} from '../config/globalState'
-import {setUserInSessionStorage} from '../services/authServices'
 
-// const Login = (props) => {
-//     const {handleLogin, history} = props
-const Login = ({history}) => {
-    const {dispatch} = useGlobalState()
-
+const Login = (props) => {
+    const {handleLogin, history} = props
     const initialFormState = {
         username: "",
         password: ""
@@ -24,31 +19,15 @@ const Login = ({history}) => {
     }
     function handleSubmit(event) {
         event.preventDefault()
-        // handleLogin(userDetails, history)
-        setUserInSessionStorage(userDetails.username)
-        dispatch ({
-            type: "setLoggedInUser",
-            data: userDetails.username
-        })
-        history.push("/profile")
-    }
+        handleLogin(userDetails, history)
 
-    // function handleSubmit(userDetails) {
-	// 	loginUser(userDetails)
-	// 		.then((response) => {
-	// 			setLoggedInUser(response.username);
-	// 			dispatch({
-	// 				type: 'setLoggedInUser',
-	// 				data: response.username,
-	// 			});
-	// 			dispatch({
-	// 				type: 'setAdminUser',
-	// 				data: response.admin,
-	// 			});
-	// 			history.push('/profile');
-	// 		})
-		
+    }
   
+    // function handleSubmit(event) {
+    //     event.preventDefault()
+    //     loginUser(userDetails)
+    //     history.push("/")
+    // }
     return (
         <form onSubmit={handleSubmit}>
             <div style={divStyles}>
