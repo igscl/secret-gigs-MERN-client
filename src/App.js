@@ -18,8 +18,7 @@ import {getUserFromSessionStorage} from './services/authServices'
 
 
 const App = () => {
-  // const [gigs, setGigs] = useState([])
-  //const [loggedInUser, setLoggedInUser] = useState(null)
+ 
 
   //global state
   const initialState = {
@@ -54,16 +53,6 @@ const App = () => {
     })
  }, [])
 
-//   // setting up local storage
-//  function setUserinLocalStorage(user) {
-//     user ? localStorage.setItem("loggedInUser", user)
-//     : localStorage.removeItem("loggedInUser")
-//   }
-//    //get user from local storage
-//    function getUserFromLocalStorage() {
-//     return localStorage.getItem("loggedInUser")
-//   }
-
  // returns a single gig based on id provided
   function getGigFromId (id) {
     return gigs.find((gig) => gig._id === parseInt(id))
@@ -76,79 +65,6 @@ const App = () => {
     return ids.sort()[ids.length - 1] + 1
   }
 
-//adds a new gig
-  // function addNewGig(gig) {
-  //   // const NewGig = [...gigs, gig]
-  //   // setGigs(NewGig)
-  //   dispatch({
-  //     type: "addGig",
-  //     data: gig 
-  //   })
-  // }
-
-  // //delete a gig that matched id
-  // function deleteGig(id) {
-  //   // const otherGig = gigs.filter((gig) => gig._id !== parseInt(id))
-  //   // setGigs(otherGig)
-  //   dispatch({
-  //     type: "deleteGig",
-  //     data: id
-  //   })
-  // }
-
-  // function updateGig(updatedGig) {
-  //   // const otherGig = gigs.filter((gig) => gig._id !== parseInt(updatedGig._id))
-  //   // setGigs([...otherGig,updatedGig])
-  //   dispatch({
-  //     type: "updateGig",
-  //     data: updatedGig
-  //   })
-  // }
-  
-  
-  //Register user
-  // function handleRegister(user, history) {
-  //   // setLoggedInUser(user.username);
-  //   // setUserinLocalStorage(user.username);
-  //   // history.push("/")
-  //   dispatch ({
-  //     type: "setLoggedInUser",
-  //     data: user.username
-  //   })
-  //   history.push("/")
-  // }
-
-// login user
-  // function handleLogin(user, history) {
-  //   // setLoggedInUser(user.username)
-  //   // setUserinLocalStorage(user.username)
-  //   dispatch ({
-  //     type: "setLoggedInUser",
-  //     data: user.username
-  //   })
-  //   history.push("/")
-  // }
-
-  //logout user
-  //clearing local storage in logout
-  //moved onto nav when using global state
-  // function handleLogout(){
-  //   // setLoggedInUser(null)
-  //   // setUserinLocalStorage(null)
-  //   dispatch ({
-  //     type: "setLoggedInUser",
-  //     data: null
-  //   })
-  // }
-
-  // function showProfile(user, history) {
-  //   // setLoggedInUser(user.username)
-  //   dispatch ({
-  //     type: "setLoggedInUser",
-  //     data: user.username
-  //   })
-  //   history.push("/profile")
-  // }
 
   return (
    
@@ -174,11 +90,6 @@ const App = () => {
     </div>
   )
 }
-      // {/* <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} /> */}
-      // {/* <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } />  */}
-      // {/* <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} /> */}
-      // {/* <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />   */}
-      // // {/* <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />   */}
-    
+ 
 
 export default App
