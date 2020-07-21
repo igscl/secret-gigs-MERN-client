@@ -1,13 +1,15 @@
 import React from 'react'
+import { useGlobalState } from '../config/globalState'
 
 
 
-const Profile = (loggedInUser, user) => {
-
+function Profile(){
+    const {store} = useGlobalState();
+    const {loggedInUser} = store;
 
     return (
         <div>
-            {loggedInUser && <header>{user.username}</header>}
+            {loggedInUser && <header>{loggedInUser}</header>}
         </div>
     )
 }

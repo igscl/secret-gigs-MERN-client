@@ -7,6 +7,11 @@ export default function (state, action) {
                 loggedInUser: action.data
             }
         }
+        case 'setAdmin':
+			return {
+				...state,
+				adminUser: action.data,
+			};
         case "setGigs": {
             return {
                 ...state,

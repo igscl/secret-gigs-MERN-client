@@ -70,14 +70,14 @@ const App = () => {
   }
 
 //adds a new gig
-  function addNewGig(gig) {
-    // const NewGig = [...gigs, gig]
-    // setGigs(NewGig)
-    dispatch({
-      type: "addGig",
-      data: gig 
-    })
-  }
+  // function addNewGig(gig) {
+  //   // const NewGig = [...gigs, gig]
+  //   // setGigs(NewGig)
+  //   dispatch({
+  //     type: "addGig",
+  //     data: gig 
+  //   })
+  // }
 
    //not needed when connected to mongo
    function getNextId() {
@@ -85,24 +85,24 @@ const App = () => {
     return ids.sort()[ids.length - 1] + 1
   }
 
-  //delete a gig that matched id
-  function deleteGig(id) {
-    // const otherGig = gigs.filter((gig) => gig._id !== parseInt(id))
-    // setGigs(otherGig)
-    dispatch({
-      type: "deleteGig",
-      data: id
-    })
-  }
+  // //delete a gig that matched id
+  // function deleteGig(id) {
+  //   // const otherGig = gigs.filter((gig) => gig._id !== parseInt(id))
+  //   // setGigs(otherGig)
+  //   dispatch({
+  //     type: "deleteGig",
+  //     data: id
+  //   })
+  // }
 
-  function updateGig(updatedGig) {
-    // const otherGig = gigs.filter((gig) => gig._id !== parseInt(updatedGig._id))
-    // setGigs([...otherGig,updatedGig])
-    dispatch({
-      type: "updateGig",
-      data: updatedGig
-    })
-  }
+  // function updateGig(updatedGig) {
+  //   // const otherGig = gigs.filter((gig) => gig._id !== parseInt(updatedGig._id))
+  //   // setGigs([...otherGig,updatedGig])
+  //   dispatch({
+  //     type: "updateGig",
+  //     data: updatedGig
+  //   })
+  // }
   
   
   //Register user
@@ -140,14 +140,14 @@ const App = () => {
   //   })
   // }
 
-  function showProfile(user, history) {
-    // setLoggedInUser(user.username)
-    dispatch ({
-      type: "setLoggedInUser",
-      data: user.username
-    })
-    history.push("/profile")
-  }
+  // function showProfile(user, history) {
+  //   // setLoggedInUser(user.username)
+  //   dispatch ({
+  //     type: "setLoggedInUser",
+  //     data: user.username
+  //   })
+  //   history.push("/profile")
+  // }
 
   return (
    
@@ -162,14 +162,12 @@ const App = () => {
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
       {/* <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } />  */}
-      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} addNewGig={addNewGig} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true} deleteGig={deleteGig}/> } />
-      <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} updateGig={updateGig} /> } />
+      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
+      <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true} /> } />
+      <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} /> } />
       <Route exact path="/auth/register" component={Register} />
-      {/* <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} /> */}
-      {/* <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />   */}
       <Route exact path="/auth/login" component={Login} />
-      <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />  
+      <Route exact path="/profile" component={Profile} />
       <Route component={NotFound} />
       </Switch> 
       </BrowserRouter>
@@ -177,5 +175,10 @@ const App = () => {
     </div>
   )
 }
+      // {/* <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} /> */}
+      // {/* <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />   */}
+
+      // // {/* <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />   */}
+    
 
 export default App

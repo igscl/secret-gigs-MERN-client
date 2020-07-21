@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {useGlobalState} from '../config/globalState'
 
 
-const Gig = ({history, gig, showControls, deleteGig}) => {
+const Gig = ({history, gig, showControls}) => {
+
+    const {dispatch} = useGlobalState();
 
     // If we don't have a post, return null
     if (!gig) return null
@@ -12,12 +15,18 @@ const Gig = ({history, gig, showControls, deleteGig}) => {
         color: 'black' 
     }
 
+    //handle the delete button 
     function handleDelete(event) {
         event.preventDefault()
-        deleteGig(gig._id)
+        // deleteGig(gig._id)
+        dispatch({
+            type: "deleteGig",
+            data: gig._id
+        })
         history.push("/gigs")
     }
 
+    //handle the edit button 
     function handleEdit(event) {
         event.preventDefault()
         history.push(`/gigs/edit/${gig._id}`)

@@ -28,9 +28,24 @@ const Login = ({history}) => {
             type: "setLoggedInUser",
             data: userDetails.username
         })
-        history.push("/")
+        history.push("/profile")
     }
 
+    // function handleSubmit(userDetails) {
+	// 	loginUser(userDetails)
+	// 		.then((response) => {
+	// 			setLoggedInUser(response.username);
+	// 			dispatch({
+	// 				type: 'setLoggedInUser',
+	// 				data: response.username,
+	// 			});
+	// 			dispatch({
+	// 				type: 'setAdminUser',
+	// 				data: response.admin,
+	// 			});
+	// 			history.push('/profile');
+	// 		})
+		
   
     return (
         <form onSubmit={handleSubmit}>
