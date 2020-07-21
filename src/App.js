@@ -79,7 +79,6 @@ const App = () => {
     })
   }
 
-
    //not needed when connected to mongo
    function getNextId() {
     const ids = gigs.map((gig) => gig._id)
@@ -107,27 +106,27 @@ const App = () => {
   
   
   //Register user
-  function handleRegister(user, history) {
-    // setLoggedInUser(user.username);
-    // setUserinLocalStorage(user.username);
-    // history.push("/")
-    dispatch ({
-      type: "setLoggedInUser",
-      data: user.username
-    })
-    history.push("/")
-  }
+  // function handleRegister(user, history) {
+  //   // setLoggedInUser(user.username);
+  //   // setUserinLocalStorage(user.username);
+  //   // history.push("/")
+  //   dispatch ({
+  //     type: "setLoggedInUser",
+  //     data: user.username
+  //   })
+  //   history.push("/")
+  // }
 
 // login user
-  function handleLogin(user, history) {
-    // setLoggedInUser(user.username)
-    // setUserinLocalStorage(user.username)
-    dispatch ({
-      type: "setLoggedInUser",
-      data: user.username
-    })
-    history.push("/")
-  }
+  // function handleLogin(user, history) {
+  //   // setLoggedInUser(user.username)
+  //   // setUserinLocalStorage(user.username)
+  //   dispatch ({
+  //     type: "setLoggedInUser",
+  //     data: user.username
+  //   })
+  //   history.push("/")
+  // }
 
   //logout user
   //clearing local storage in logout
@@ -166,8 +165,10 @@ const App = () => {
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} addNewGig={addNewGig} nextId={getNextId()} /> } />
       <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true} deleteGig={deleteGig}/> } />
       <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} updateGig={updateGig} /> } />
-      <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} />
-      <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />  
+      <Route exact path="/auth/register" component={Register} />
+      {/* <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} /> */}
+      {/* <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />   */}
+      <Route exact path="/auth/login" component={Login} />
       <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />  
       <Route component={NotFound} />
       </Switch> 

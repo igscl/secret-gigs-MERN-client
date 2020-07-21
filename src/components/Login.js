@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
+import  {useGlobalState} from '../config/globalState'
 
-const Login = (props) => {
-    const {handleLogin, history} = props
+// const Login = (props) => {
+//     const {handleLogin, history} = props
+const Login = ({history}) => {
+    const {dispatch} = useGlobalState()
+
     const initialFormState = {
         username: "",
         password: ""
@@ -19,10 +23,14 @@ const Login = (props) => {
     }
     function handleSubmit(event) {
         event.preventDefault()
-        handleLogin(userDetails, history)
-
+        // handleLogin(userDetails, history)
+        dispatch ({
+            type: "setLoggedInUser",
+            data: userDetails.username
+        })
+        history.push("/")
     }
-  
+
   
     return (
         <form onSubmit={handleSubmit}>
