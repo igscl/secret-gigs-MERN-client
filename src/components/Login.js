@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
 import  {useGlobalState} from '../config/globalState'
+import {setUserInSessionStorage} from '../services/authServices'
 
 // const Login = (props) => {
 //     const {handleLogin, history} = props
@@ -24,6 +25,7 @@ const Login = ({history}) => {
     function handleSubmit(event) {
         event.preventDefault()
         // handleLogin(userDetails, history)
+        setUserInSessionStorage(userDetails.username)
         dispatch ({
             type: "setLoggedInUser",
             data: userDetails.username

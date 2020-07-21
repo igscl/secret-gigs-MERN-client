@@ -3,6 +3,7 @@ export function getUserFromSessionStorage() {
 }
 
 export function setUserInSessionStorage(user) {
-
+    user ? localStorage.setItem("loggedInUser", user)
+        : sessionStorage.removeItem("loggedInUser")
 }
 

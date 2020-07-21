@@ -14,6 +14,7 @@ import Profile from './components/Profile'
 import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
+import {getUserFromSessionStorage} from './services/authServices'
 
 
 const App = () => {
@@ -29,7 +30,7 @@ const App = () => {
 
   const [store, dispatch] = useReducer(stateReducer, initialState)
 
-  const { gigs} = store;
+  const {gigs} = store;
 
   useEffect(() => {
     //setGigs(gigsData)
@@ -43,15 +44,15 @@ const App = () => {
 
  
 
-//  useEffect(() => {
-// //     //check local storage for a logged in user
-//     //  const user = getUserFromLocalStorage();
-// //     // user && setLoggedInUser(user)
-//     dispatch({
-//       type: "setLoggedInUser",
-//       data: user 
-//     })
-//  }, [])
+ useEffect(() => {
+    //check local storage for a logged in user
+     const user = getUserFromSessionStorage();
+    // user && setLoggedInUser(user)
+    dispatch({
+      type: "setLoggedInUser",
+      data: user 
+    })
+ }, [])
 
 //   // setting up local storage
 //  function setUserinLocalStorage(user) {
@@ -63,10 +64,16 @@ const App = () => {
 //     return localStorage.getItem("loggedInUser")
 //   }
 
+//  // returns a single gig based on id provided
+//   function getGigFromId (id) {
+//     return gigs.find((gig) => gig._id === parseInt(id))
+//   }
 
-  //returns a single gig based on id provided
-  function getGigFromId (id) {
-    return gigs.find((gig) => gig._id === parseInt(id))
+
+   //not needed when connected to mongo
+   function getNextId() {
+    const ids = gigs.map((gig) => gig._id)
+    return ids.sort()[ids.length - 1] + 1
   }
 
 //adds a new gig
@@ -78,12 +85,6 @@ const App = () => {
   //     data: gig 
   //   })
   // }
-
-   //not needed when connected to mongo
-   function getNextId() {
-    const ids = gigs.map((gig) => gig._id)
-    return ids.sort()[ids.length - 1] + 1
-  }
 
   // //delete a gig that matched id
   // function deleteGig(id) {
@@ -155,16 +156,14 @@ const App = () => {
        <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
       <Nav />
-      {/* <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} /> */}
       <h1>Secret gig</h1>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
-      {/* <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } />  */}
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true} /> } />
-      <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} /> } />
+      <Route exact path="/gigs/:id" component={Gig} showControls={true} />
+      <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
       <Route exact path="/auth/register" component={Register} />
       <Route exact path="/auth/login" component={Login} />
       <Route exact path="/profile" component={Profile} />
@@ -175,9 +174,10 @@ const App = () => {
     </div>
   )
 }
+      // {/* <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} /> */}
+      // {/* <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } />  */}
       // {/* <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} /> */}
       // {/* <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />   */}
-
       // // {/* <Route exact path="/profile" render={(props) => <Profile {...props} showProfile={showProfile}/>} />   */}
     
 

@@ -2,8 +2,12 @@ import React, {useState, useEffect} from 'react'
 import {useGlobalState} from '../config/globalState'
 
 //styling
-const EditGig = ({history, gig, updateGig}) => {
-    const {dispatch} = useGlobalState();
+const EditGig = ({history, match}) => {
+    const {store, dispatch} = useGlobalState();
+    const {gigs} = store
+    const gigId = match.params.id
+
+    const gig = gigs.find((gig) => gig._id === parseInt(gigId))
     
     const divStyles = {
         display: 'grid',
@@ -25,6 +29,7 @@ const EditGig = ({history, gig, updateGig}) => {
 }
 
 const [formState, setFormState] = useState(initialFormState)
+
 useEffect(() =>{
     gig && setFormState({
         name: gig.name,

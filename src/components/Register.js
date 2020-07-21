@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {divStyles, inputStyles, labelStyles} from '../styles'
 import {useGlobalState} from '../config/globalState' 
+import {setUserInSessionStorage} from '../services/authServices'
 
 
 // function Register(props) {
@@ -31,6 +32,7 @@ const Register = ({history}) => {
     //submit handler
     function handleSubmit(event) {
         event.preventDefault()
+        setUserInSessionStorage(userDetails.username)
         dispatch ({
             type: "setLoggedInUser",
             data: userDetails

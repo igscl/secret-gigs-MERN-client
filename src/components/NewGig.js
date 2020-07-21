@@ -5,7 +5,7 @@ import {useGlobalState} from '../config/globalState'
 const NewGig = ({history, nextId}) => {
 
     const {dispatch} = useGlobalState();
-    
+
     const divStyles = {
         display: 'grid',
         width: '100vw',
