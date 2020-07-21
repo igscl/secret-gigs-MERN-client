@@ -1,13 +1,17 @@
 import React from 'react'
+import { useGlobalState } from '../config/globalState'
+// import {setUserInSessionStorage} from '../services/authServices'
 
-const Profile = ({user}) => {
+
+
+function Profile(){
+    const {store} = useGlobalState();
+    const {loggedInUser} = store
+
     return (
         <div>
-            <h1>User Profile</h1>
-            <p>{user.username}</p>
-
-            </div>
+            {loggedInUser && <header>{loggedInUser}</header>}
+        </div>
     )
 }
-
-export default Profile
+export default Profile 

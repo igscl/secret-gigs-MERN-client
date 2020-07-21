@@ -1,9 +1,24 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { useGlobalState } from '../config/globalState'
+import {setUserInSessionStorage} from '../services/authServices'
 
-const Nav = (props) => {
+// const Nav = (props) => {
 
-    const {loggedInUser, handleLogout} = props 
+//     const {loggedInUser, handleLogout} = props 
+
+const Nav = () => {
+    const { store, dispatch } = useGlobalState()
+    const {loggedInUser} = store
+
+    //logout user
+    function logoutUser() {
+        setUserInSessionStorage(null)
+        dispatch({
+            type: "setLoggedInUser",
+            data: null
+        })
+    }
 
     const divStyles = {
         display: 'flex',
@@ -24,7 +39,7 @@ const Nav = (props) => {
             ? ( 
                 <div>
                     <span style ={space}>{loggedInUser}</span>
-                    <Link style={linkStyles} to="/" onClick={handleLogout}>Logout</Link>
+                    <Link style={linkStyles} to="/" onClick={logoutUser}>Logout</Link>
                     <Link style= {linkStyles} to="/gigs">Gigs</Link>
                     <Link style= {linkStyles} to="/gigs/new">Add a Gig</Link>
                 </div> 
