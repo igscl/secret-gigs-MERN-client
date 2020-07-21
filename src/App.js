@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer} from 'react'
+import React, { useEffect, useReducer} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import Nav from './components/Nav'
@@ -14,37 +14,48 @@ import Profile from './components/Profile'
 import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
+import {getUserFromSessionStorage} from './services/authServices'
+
 
 const App = () => {
-
+ 
 
   //global state
   const initialState = {
     loggedInUser: null,
     gigs: []
   }
+  
 
-  const [store, dispatch] = useReducer (stateReducer, initialState)
+  const [store, dispatch] = useReducer(stateReducer, initialState)
 
   const {gigs} = store;
-  useEffect(() => {
 
+  useEffect(() => {
+    //setGigs(gigsData)
+    //refactored using reducer
     dispatch({
       type: "setGigs",
       data: gigsData
+      
     })
-
   }, [])
-  
-  //returns a single gig based on id provided
+
+ 
+
+ useEffect(() => {
+    //check local storage for a logged in user
+     const user = getUserFromSessionStorage();
+    // user && setLoggedInUser(user)
+    dispatch({
+      type: "setLoggedInUser",
+      data: user 
+    })
+ }, [])
+
+ // returns a single gig based on id provided
   function getGigFromId (id) {
     return gigs.find((gig) => gig._id === parseInt(id))
-  }
-
-//adds a new gig
-  function addNewGig(gig) {
-    const NewGig = [...gigs, gig]
-    // setGigs(NewGig)
   }
 
 
@@ -55,26 +66,6 @@ const App = () => {
   }
 
 
-
-  const [loggedInUser, setLoggedInUser] = useState(null)
-  
-  //Register user
-  function handleRegister(user, history) {
-    setLoggedInUser(user.username)
-    history.push("/")
-  }
-
-// login user
-  function handleLogin(user, history) {
-    setLoggedInUser(user.username)
-    history.push("/")
-  }
-
-  //logout user
-  function handleLogout(){
-    setLoggedInUser(null)
-  }
-
   // show Profile
   function getProfile (user) {
     setLoggedInUser(user)
@@ -83,19 +74,20 @@ const App = () => {
   return (
    
     <div>
-      <StateContext.Provider value={{store, dispatch}} >
+       <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
-      <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} />
+      <Nav />
+      <h1>Secret gig</h1>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
-      <Route exact path="/profile" render={(props) => <Profile {...props} getProfile={getProfile}/> } />
-      <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } /> 
-      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} addNewGig={addNewGig} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true}/> } />
-      <Route exact path="/gigs/edit/:id" component={EditGig}/>
-      <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} />
-      <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />  
+      <Route exact path="/gigs" component={Gigs} />
+      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
+      <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getGigFromId(props.match.params.id)} showControls /> } />
+      <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
+      <Route exact path="/auth/register" component={Register} />
+      <Route exact path="/auth/login" component={Login} />
+      <Route exact path="/profile" component={Profile} />
       <Route component={NotFound} />
       </Switch> 
       </BrowserRouter>
@@ -103,5 +95,6 @@ const App = () => {
     </div>
   )
 }
+ 
 
 export default App

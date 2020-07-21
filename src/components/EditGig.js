@@ -29,6 +29,7 @@ const EditGig = ({history, match}) => {
 }
 
 const [formState, setFormState] = useState(initialFormState)
+
 useEffect(() =>{
     gig && setFormState({
         name: gig.name,
@@ -56,11 +57,11 @@ function handleSubmit(event) {
         generalLocation: formState.generalLocation,
         capacity: formState.capacity,
     }
-    dispatch({
-        type: "updateGig",
-        data: updatedGig
-    })
         // updateGig(updatedGig)
+        dispatch({
+            type: "updateGig",
+            data: updatedGig
+        })
         history.push("/gigs")
 //    history.push(`/gigs/${nextId}`)
 }
