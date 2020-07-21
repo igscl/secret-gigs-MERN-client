@@ -64,10 +64,10 @@ const App = () => {
 //     return localStorage.getItem("loggedInUser")
 //   }
 
-//  // returns a single gig based on id provided
-//   function getGigFromId (id) {
-//     return gigs.find((gig) => gig._id === parseInt(id))
-//   }
+ // returns a single gig based on id provided
+  function getGigFromId (id) {
+    return gigs.find((gig) => gig._id === parseInt(id))
+  }
 
 
    //not needed when connected to mongo
@@ -162,7 +162,7 @@ const App = () => {
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" component={Gig} showControls={true} />
+      <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getGigFromId(props.match.params.id)} showControls /> } />
       <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
       <Route exact path="/auth/register" component={Register} />
       <Route exact path="/auth/login" component={Login} />
