@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import {setUserInSessionStorage} from '../services/authServices'
+import {logoutUser} from '../services/authServices'
 
 // const Nav = (props) => {
 
@@ -12,7 +13,11 @@ const Nav = () => {
     const {loggedInUser} = store
 
     //logout user
-    function logoutUser() {
+    function handleLogout() {
+        logoutUser()
+        .then(response => console.log("successful logout: ", response.status))
+        .catch(error => console.log("Server down: ", error))
+
         setUserInSessionStorage(null)
         dispatch({
             type: "setLoggedInUser",
@@ -39,7 +44,7 @@ const Nav = () => {
             ? ( 
                 <div>
                     <span style ={space}>{loggedInUser}</span>
-                    <Link style={linkStyles} to="/" onClick={logoutUser}>Logout</Link>
+                    <Link style={linkStyles} to="/" onClick={handleLogout}>Logout</Link>
                     <Link style= {linkStyles} to="/gigs">Gigs</Link>
                     <Link style= {linkStyles} to="/gigs/new">Add a Gig</Link>
                 </div> 
