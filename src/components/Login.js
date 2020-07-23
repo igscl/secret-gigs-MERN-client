@@ -13,7 +13,7 @@ const Login = ({history}) => {
         password: ""
     } 
     const [errorMessage, setErrorMessage] = useState(null);
-    const [userDetails,setUserDetails] = useState(initialFormState)
+    const [userDetails,setUserDetails] = useState(initialFormState);
     const {dispatch} = useGlobalState()
 
     function handleChange(event) {
