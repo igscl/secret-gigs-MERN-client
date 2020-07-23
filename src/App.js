@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useEffect, useReducer} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import Nav from './components/Nav'
@@ -10,24 +10,52 @@ import NewGig from './components/NewGig'
 import EditGig from './components/EditGig'
 import Register from './components/Register'
 import Login from './components/Login'
+import Profile from './components/Profile'
 import NotFound from './components/NotFound'
+import stateReducer from './config/stateReducer'
+import { StateContext } from './config/globalState'
+import {getUserFromSessionStorage} from './services/authServices'
 
 
 const App = () => {
-  const [gigs, setGigs] = useState([])
-  useEffect(() => {
-    setGigs(gigsData)
-  }, [])
+ 
+
+  //global state
+  const initialState = {
+    loggedInUser: null,
+    gigs: []
+  }
   
-  //returns a single gig based on id provided
+
+  const [store, dispatch] = useReducer(stateReducer, initialState)
+
+  const {gigs} = store;
+
+  useEffect(() => {
+    //setGigs(gigsData)
+    //refactored using reducer
+    dispatch({
+      type: "setGigs",
+      data: gigsData
+      
+    })
+  }, [])
+
+ 
+
+ useEffect(() => {
+    //check local storage for a logged in user
+     const user = getUserFromSessionStorage();
+    // user && setLoggedInUser(user)
+    dispatch({
+      type: "setLoggedInUser",
+      data: user 
+    })
+ }, [])
+
+ // returns a single gig based on id provided
   function getGigFromId (id) {
     return gigs.find((gig) => gig._id === parseInt(id))
-  }
-
-//adds a new gig
-  function addNewGig(gig) {
-    const NewGig = [...gigs, gig]
-    setGigs(NewGig)
   }
 
 
@@ -37,56 +65,31 @@ const App = () => {
     return ids.sort()[ids.length - 1] + 1
   }
 
-  //delete a gig that matched id
-  function deleteGig(id) {
-    const otherGig = gigs.filter((gig) => gig._id !== parseInt(id))
-    setGigs(otherGig)
-
-  }
-
-  function updateGig(updatedGig) {
-    const otherGig = gigs.filter((gig) => gig._id !== parseInt(updatedGig._id))
-    setGigs([...otherGig,updatedGig])
-  }
-  
-  const [loggedInUser, setLoggedInUser] = useState(null)
-  
-  //Register user
-  function handleRegister(user, history) {
-    setLoggedInUser(user.username)
-    history.push("/")
-  }
-
-// login user
-  function handleLogin(user, history) {
-    setLoggedInUser(user.username)
-    history.push("/")
-  }
-
-  //logout user
-  function handleLogout(){
-    setLoggedInUser(null)
-  }
 
   return (
    
     <div>
+       <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
-      <Nav loggedInUser={loggedInUser} handleLogout={handleLogout} />
+      <Nav />
+      <h1>Secret gig</h1>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
-      <Route exact path="/gigs" render={(props) => <Gigs {...props} gigData={gigs}/> } /> 
-      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} addNewGig={addNewGig} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" render={(props) => <Gig {...props} gig={getGigFromId(props.match.params.id)} showControls={true} deleteGig={deleteGig}/> } />
-      <Route exact path="/gigs/edit/:id" render={(props) => <EditGig {...props} gig={getGigFromId(props.match.params.id)} updateGig={updateGig} /> } />
-      <Route exact path="/auth/register" render={(props) => <Register {...props} handleRegister={handleRegister}/>} />
-      <Route exact path="/auth/login" render={(props) => <Login {...props} handleLogin={handleLogin}/>} />  
+      <Route exact path="/gigs" component={Gigs} />
+      <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
+      <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getGigFromId(props.match.params.id)} showControls /> } />
+      <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
+      <Route exact path="/auth/register" component={Register} />
+      <Route exact path="/auth/login" component={Login} />
+      <Route exact path="/profile" component={Profile} />
       <Route component={NotFound} />
       </Switch> 
       </BrowserRouter>
+      </StateContext.Provider>
     </div>
   )
 }
+ 
 
 export default App

@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div style={divStyles}>
-    <h1>Secret Venue</h1>
+    <h1>Shhh!! it's a secret!</h1>
     </div>
   )
 }
