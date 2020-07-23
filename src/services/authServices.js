@@ -17,7 +17,15 @@ export async function loginUser(userInfo) {
     return response.data
 }
 
+export async function registerUser(userInfo) {
+    // call to server to register user
+    const response = await api.post("/auth/register", userInfo)
+    console.log("got user back from server", response)
+    return response.data
+}
 
-
-
+export async function logoutUser() {
+    // call to server to logout user
+    return api.get("/auth/logout")
+}
 
