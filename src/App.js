@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 import About from './components/About'
 import Gigs from './components/Gigs'
 import Gig from './components/Gig'
-import gigsData from './data/gigs_data'
+// import gigsData from './data/gigs_data'
 import NewGig from './components/NewGig'
 import EditGig from './components/EditGig'
 import Register from './components/Register'
@@ -15,6 +15,7 @@ import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
 import {getUserFromSessionStorage} from './services/authServices'
+import { getAllEvents } from './services/gigServices'
 
 
 const App = () => {
@@ -31,15 +32,30 @@ const App = () => {
 
   const {gigs} = store;
 
-  useEffect(() => {
-    //setGigs(gigsData)
-    //refactored using reducer
-    dispatch({
-      type: "setGigs",
-      data: gigsData
-      
+  function fetchAllEvents() {
+    getAllEvents().then((gigsData) => {
+      dispatch({
+        type: "setGigs",
+        data: gigsData
+      })
+    }).catch((error) => {
+      console.log("An error occurred fetching events from the server:", error) 
     })
-  }, [])
+    }
+
+    useEffect(() => {
+      fetchAllEvents()
+    },[])
+
+  // useEffect(() => {
+  //   //setGigs(gigsData)
+  //   //refactored using reducer
+  //   dispatch({
+  //     type: "setGigs",
+  //     data: gigsData
+      
+  //   })
+  // }, [])
 
  
 
@@ -65,6 +81,7 @@ const App = () => {
     return ids.sort()[ids.length - 1] + 1
   }
 
+  
 
   return (
    
