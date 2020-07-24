@@ -1,11 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {useGlobalState} from '../config/globalState'
+import {deleteEvent} from '../services/gigServices' 
 
 
-const Gig = ({history, gig, showControls}) => {
 
-    const {store, dispatch} = useGlobalState();
+const Event = ({history, gig, showControls}) => {
+
+    const { store, dispatch} = useGlobalState();
     const {gigs} = store
 
     // If we don't have a post, return null
@@ -16,15 +18,28 @@ const Gig = ({history, gig, showControls}) => {
         color: 'black' 
     }
 
+    const buttonStyles = {
+        margin: '.5em',
+        fontSize: '1em'
+    }
+
+    const {name, date, generalLocation, specificLocation, capacity} = gig
+    // const allowEditDelete = loggedInUser && loggedInUser === gig.username
+
     //handle the delete button 
     function handleDelete(event) {
         event.preventDefault()
         // deleteGig(gig._id)
+        deleteEvent(gig._id).then(() => {
+        const updatedGig = gigs.filter((gig) => gig._id !== event._id)
         dispatch({
             type: "deleteGig",
-            data: gig._id
+            data: updatedGig
         })
         history.push("/gigs")
+    }).catch((error) => {
+        console.log("error deleting event", error)
+        })
     }
 
     //handle the edit button 
@@ -33,26 +48,26 @@ const Gig = ({history, gig, showControls}) => {
         history.push(`/gigs/edit/${gig._id}`)
     }
 
-    const {name, date, generalLocation, specificLocation, capacity} = gig
 
     return (
         <div>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
                 <h2>{name}</h2>
-            </Link>
-			<p>Date: {date.toLocaleString()}</p>
+           
+			<p>Date: {date}</p>
 			<p>General Location: {generalLocation}</p>
             <p>Specific Location: {specificLocation}</p>
 			<p>Capacity: {capacity}</p>
-            {showControls && (
+            {showControls &&  (
                 <div>
-                    <button onClick={handleEdit}>Update</button>
-                    <button onClick={handleDelete}>Delete</button>  
-                    <button>Apply!</button>
+                    <button style={buttonStyles} onClick={handleEdit}>Update</button>
+                    <button style ={buttonStyles} onClick={handleDelete}>Delete</button>  
+                    <button style ={buttonStyles}>Apply!</button>
                 </div>
                 )}
+                 </Link>
         </div>
     )
 }
 
-export default Gig
+export default Event
