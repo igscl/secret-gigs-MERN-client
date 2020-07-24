@@ -1,5 +1,5 @@
 import React from 'react'
-import Gig from "./Gig"
+import Event from "./Event"
 import { useGlobalState } from '../config/globalState' 
 
 
@@ -10,7 +10,7 @@ const Gigs= () => {
     return (
         <div>
             {gigs.sort((a,b) => b.date - a.date)
-        .map((gig) => <Gig key={gig._id} gig={gig} showControls={false}/>)}
+        .map((gig) => <Event key={gig._id} gig={gig} />)}
         {/* {gigData.sort((a,b) => b.date - a.date)
         .map((gig) => <Gig key={gig._id} gig={gig} showControls={false}/>)} */}
         </div>
