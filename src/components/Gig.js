@@ -5,8 +5,7 @@ import {useGlobalState} from '../config/globalState'
 
 const Gig = ({history, gig, showControls}) => {
 
-    const {store, dispatch} = useGlobalState();
-    const {gigs} = store
+    const {dispatch} = useGlobalState();
 
     // If we don't have a post, return null
     if (!gig) return null
@@ -33,7 +32,7 @@ const Gig = ({history, gig, showControls}) => {
         history.push(`/gigs/edit/${gig._id}`)
     }
 
-    const {name, date, generalLocation, capacity} = gig
+    const {name, date, generalLocation, specificLocation, capacity} = gig
 
     return (
         <div>
@@ -42,8 +41,16 @@ const Gig = ({history, gig, showControls}) => {
             </Link>
 			<p>Date: {date.toLocaleString()}</p>
 			<p>General Location: {generalLocation}</p>
-            <p>Capacity: {capacity}</p>
-            </div>
+            <p>Specific Location: {specificLocation}</p>
+			<p>Capacity: {capacity}</p>
+            {showControls && (
+                <div>
+                    <button onClick={handleEdit}>Update</button>
+                    <button onClick={handleDelete}>Delete</button>  
+                    <button>Apply!</button>
+                </div>
+                )}
+        </div>
     )
 }
 
