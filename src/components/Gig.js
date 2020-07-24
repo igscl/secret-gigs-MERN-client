@@ -32,7 +32,7 @@ const Gig = ({history, gig, showControls}) => {
         history.push(`/gigs/edit/${gig._id}`)
     }
 
-    const {name, date, generalLocation, capacity} = gig
+    const {name, date, generalLocation, specificLocation, capacity} = gig
 
     return (
         <div>
@@ -41,6 +41,7 @@ const Gig = ({history, gig, showControls}) => {
             </Link>
 			<p>Date: {date.toLocaleString()}</p>
 			<p>General Location: {generalLocation}</p>
+            <p>Specific Location: {specificLocation}</p>
 			<p>Capacity: {capacity}</p>
             {showControls && (
                 <div>
