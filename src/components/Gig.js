@@ -5,7 +5,8 @@ import {useGlobalState} from '../config/globalState'
 
 const Gig = ({history, gig, showControls}) => {
 
-    const {dispatch} = useGlobalState();
+    const {store, dispatch} = useGlobalState();
+    const {gigs} = store
 
     // If we don't have a post, return null
     if (!gig) return null

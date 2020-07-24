@@ -30,7 +30,7 @@ const NewGig = ({ history }) => {
 
     const [errorMessage, setErrorMessage] = useState(null);
     const [formState, setFormState] = useState(initialFormState)
-
+    
     function handleChange(event) {
         const name = event.target.name
         const value = event.target.value
@@ -77,15 +77,15 @@ const NewGig = ({ history }) => {
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>General Location</label>
-                <input style={inputStyles} required type="text" name="general location" placeholder="Enter location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} required type="text" name="generalLocation" placeholder="Enter location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Specific Location</label>
-                <input style={inputStyles} required type="text" name="specific location" placeholder="Enter a specific location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} required type="text" name="specificLocation" placeholder="Enter a specific location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Capacity</label>
-                <input style={inputStyles} required type="text" name="capacity" placeholder="Enter capacity of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} required type="number" name="capacity" placeholder="Enter capacity of the gig" onChange={handleChange}></input>
             </div>
             <input type="submit" value="Add a gig"></input>
         </form>
