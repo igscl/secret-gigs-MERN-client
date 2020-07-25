@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {useGlobalState} from '../config/globalState'
-import {deleteEvent} from '../services/gigServices' 
+import {removeEvent} from '../services/gigServices' 
 
 
 
-const Event = ({history, gig, showControls}) => {
+const Gig = ({history, gig, showControls}) => {
 
     const { store, dispatch} = useGlobalState();
     const {gigs} = store
@@ -30,7 +30,7 @@ const Event = ({history, gig, showControls}) => {
     function handleDelete(event) {
         event.preventDefault()
         // deleteGig(gig._id)
-        deleteEvent(gig._id).then(() => {
+        removeEvent(gig._id).then(() => {
         const updatedGig = gigs.filter((gig) => gig._id !== event._id)
         dispatch({
             type: "deleteGig",
@@ -70,4 +70,4 @@ const Event = ({history, gig, showControls}) => {
     )
 }
 
-export default Event
+export default Gig

@@ -4,7 +4,7 @@ import Home from './components/Home'
 import Nav from './components/Nav'
 import About from './components/About'
 import Gigs from './components/Gigs'
-import Event from './components/Event'
+import Gig from './components/Gig'
 // import gigsData from './data/gigs_data'
 import NewGig from './components/NewGig'
 import EditGig from './components/EditGig'
@@ -15,7 +15,7 @@ import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
 import {getUserFromSessionStorage} from './services/authServices'
-import { getAllEvents, getEventFromId } from './services/gigServices'
+import { getEvents, getEvent } from './services/gigServices'
 
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
   const {gigs} = store;
 
   function fetchAllEvents() {
-    getAllEvents().then((gigsData) => {
+    getEvents().then((gigsData) => {
       dispatch({
         type: "setGigs",
         data: gigsData
@@ -95,7 +95,7 @@ const App = () => {
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
-      <Route exact path="/gigs/:id" render={(props) => <Event  {...props} gig={getEventFromId(gigs, props.match.params.id)} showControls /> } />
+      <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getEvent(gigs, props.match.params.id)} showControls /> } />
       {/* <Route exact path="/posts/:id" render={(props) => <BlogPost {...props} post={getPostFromId(blogPosts,props.match.params.id)} showControls /> } /> */}
       <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
       <Route exact path="/auth/register" component={Register} />

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useGlobalState} from '../config/globalState'
-import {getEventFromId, updateEvent} from '../services/gigServices'
+import {getEvent, modifyEvent} from '../services/gigServices'
 
 //styling
 const EditGig = ({history, match}) => {
@@ -8,7 +8,7 @@ const EditGig = ({history, match}) => {
     const {gigs} = store
     const gigId = match && match.params ? match.params.id : -1
 
-    const gig = getEventFromId(gigs, gigId)
+    const gig = getEvent(gigs, gigId)
     
     const divStyles = {
         display: 'grid',
@@ -44,7 +44,7 @@ function handleSubmit(event) {
         capacity: formState.capacity,
     }
         // updateGig(updatedGig)
-        updateEvent(updatedGig).then(() => {
+        modifyEvent(updatedGig).then(() => {
         dispatch({
             type: "updateGig",
             data: updatedGig
