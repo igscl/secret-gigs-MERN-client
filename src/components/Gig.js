@@ -7,7 +7,7 @@ import {removeEvent} from '../services/gigServices'
 
 const Gig = ({history, gig, showControls}) => {
 
-    const { store, dispatch} = useGlobalState();
+    const {store, dispatch} = useGlobalState();
     const {gigs} = store
 
     // If we don't have a post, return null
@@ -31,7 +31,7 @@ const Gig = ({history, gig, showControls}) => {
         event.preventDefault()
         // deleteGig(gig._id)
         removeEvent(gig._id).then(() => {
-        const updatedGig = gigs.filter((gig) => gig._id !== event._id)
+        const updatedGig = gigs.filter((event) => event._id !== gig._id)
         dispatch({
             type: "deleteGig",
             data: updatedGig
