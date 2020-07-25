@@ -50,9 +50,10 @@ const NewGig = ({ history }) => {
             capacity: formState.capacity,
         }
         postEvent(newGig).then((newGig) => {
+        const otherGigs = gigs.filter((gig) => gig._id !== newGig._id)
             dispatch({
                 type: "addGig",
-                data: [newGig, ...gigs]
+                data: [newGig, ...otherGigs]
             })
             // addNewGig(nextGig)
             //  history.push("/")

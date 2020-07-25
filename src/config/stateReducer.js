@@ -21,7 +21,7 @@ export default function (state, action) {
         case "addGig":
             return {
                 ...state,
-                gigs: [action.data, ...state.gigs]
+                gigs: action.data
             }
         case "updateGig":
             return {

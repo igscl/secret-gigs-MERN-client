@@ -93,7 +93,7 @@ const App = () => {
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
-  <Route exact path="/gigs" render={(props) => <Gigs {...props} gigs={gigs} /> } />
+      <Route exact path="/gigs" component={Gigs} />
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
       <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getEvent(gigs, props.match.params.id)} showControls /> } />
       {/* <Route exact path="/posts/:id" render={(props) => <BlogPost {...props} post={getPostFromId(blogPosts,props.match.params.id)} showControls /> } /> */}

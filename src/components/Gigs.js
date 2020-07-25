@@ -5,7 +5,7 @@ import { useGlobalState } from '../config/globalState'
 
 const Gigs = () => {
 
-    const { store, dispatch} = useGlobalState();
+    const { store } = useGlobalState();
     const {gigs} = store
 
 
