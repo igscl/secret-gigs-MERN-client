@@ -33,6 +33,16 @@ export default function (state, action) {
                 ...state,
                 gigs: action.data
             }
+        case "applyGig":
+            return {
+                ...state,
+                gigs: action.data
+            }
+        case "setLoggedInUserEvents":
+            return {
+                ...state,
+                loggedInUserEvents: action.data
+            }
         default: 
             return state
     }

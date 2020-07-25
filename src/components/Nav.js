@@ -44,9 +44,10 @@ const Nav = () => {
             ? ( 
                 <div>
                     <span style ={space}>{loggedInUser}</span>
-                    <Link style={linkStyles} to="/" onClick={handleLogout}>Logout</Link>
+                    <Link style= {linkStyles} to="/profile">Profile</Link>
                     <Link style= {linkStyles} to="/gigs">Gigs</Link>
                     <Link style= {linkStyles} to="/gigs/new">Add a Gig</Link>
+                    <Link style={linkStyles} to="/" onClick={handleLogout}>Logout</Link>
                 </div> 
             )
             : ( 

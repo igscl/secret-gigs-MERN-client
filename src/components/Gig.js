@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {useGlobalState} from '../config/globalState'
-import {removeEvent} from '../services/gigServices' 
+import {removeEvent, applyToEvent} from '../services/gigServices' 
 
 
 
@@ -10,7 +10,7 @@ const Gig = ({history, gig, showControls}) => {
     const {store, dispatch} = useGlobalState();
     const {gigs} = store
 
-    // If we don't have a post, return null
+    // If we don't have a gig, return null
     if (!gig) return null
 
     const linkStyles = {
@@ -48,6 +48,20 @@ const Gig = ({history, gig, showControls}) => {
         history.push(`/gigs/edit/${gig._id}`)
     }
 
+    //handle the apply button 
+    function handleApply(event) {
+        event.preventDefault()
+        applyToEvent(gig).then(() => {
+            const updatedGigs = gigs.filter((event) => event._id !== gig._id)
+            dispatch({
+                type: "applyGig",
+                data: updatedGigs
+            })
+            history.push("/gigs")
+        }).catch((error) => {
+            console.log("error applying to event", error)
+            })
+        }
 
     return (
         <div>
@@ -62,7 +76,7 @@ const Gig = ({history, gig, showControls}) => {
                 <div>
                     <button style={buttonStyles} onClick={handleEdit}>Update</button>
                     <button style ={buttonStyles} onClick={handleDelete}>Delete</button>  
-                    <button style ={buttonStyles}>Apply!</button>
+                    <button style ={buttonStyles} onClick={handleApply} >Apply!</button>
                 </div>
                 )}
                  </Link>

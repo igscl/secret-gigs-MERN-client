@@ -42,6 +42,10 @@ const Register = ({history}) => {
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
+            // dispatch({
+            //     type: "setLoggedInUserEvents",
+            //     data: response.eventsApplied
+            // })
             history.push("/")
         })
         .catch(error => {
