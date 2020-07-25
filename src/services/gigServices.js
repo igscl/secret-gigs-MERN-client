@@ -26,3 +26,5 @@ export async function modifyEvent(event) {
     const response = await api.put(`/events/${event._id}`, event)
     return response.data
 }
+
+// export async function applyToEvent

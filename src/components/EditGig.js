@@ -45,9 +45,10 @@ function handleSubmit(event) {
     }
         // updateGig(updatedGig)
         modifyEvent(updatedGig).then(() => {
+        const otherGigs = gigs.filter((gig) => gig._id !== updatedGig._id)
         dispatch({
             type: "updateGig",
-            data: updatedGig
+            data: [updatedGig, ...otherGigs]
         })
         history.push("/gigs")
 //    history.push(`/gigs/${nextId}`)
