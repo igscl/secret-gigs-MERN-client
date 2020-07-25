@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {useGlobalState} from '../config/globalState'
+import {getEvent, modifyEvent} from '../services/gigServices'
 
 //styling
 const EditGig = ({history, match}) => {
     const {store, dispatch} = useGlobalState();
     const {gigs} = store
-    const gigId = match.params.id
+    const gigId = match && match.params ? match.params.id : -1
 
-    const gig = gigs.find((gig) => gig._id === parseInt(gigId))
+    const gig = getEvent(gigs, gigId)
     
     const divStyles = {
         display: 'grid',
@@ -20,24 +21,8 @@ const EditGig = ({history, match}) => {
     const labelStyles = {
         fontSize: '1.2em'
     }
- //state
- const initialFormState = {
-    name: "",
-    date: "",
-    generalLocation: "",
-    capacity: ""   
-}
+ 
 
-const [formState, setFormState] = useState(initialFormState)
-
-useEffect(() =>{
-    gig && setFormState({
-        name: gig.name,
-        date: gig.date,
-        generalLocation: gig.generalLocation,
-        capacity: gig.capacity
-    })
-}, [gig])
 
 function handleChange(event) {
     const name = event.target.name
@@ -55,16 +40,44 @@ function handleSubmit(event) {
         name: formState.name,
         date: formState.date,
         generalLocation: formState.generalLocation,
+        specificLocation: formState.specificLocation,
         capacity: formState.capacity,
     }
         // updateGig(updatedGig)
+        modifyEvent(updatedGig).then(() => {
+        const otherGigs = gigs.filter((gig) => gig._id !== updatedGig._id)
         dispatch({
             type: "updateGig",
-            data: updatedGig
+            data: [updatedGig, ...otherGigs]
         })
         history.push("/gigs")
 //    history.push(`/gigs/${nextId}`)
+    }).catch((error) => {
+        console.log("error editing event", error)
+    })
 }
+
+//state
+const initialFormState = {
+    name: "",
+    date: "",
+    generalLocation: "",
+    specificLocation: "",
+    capacity: ""   
+}
+
+const [formState, setFormState] = useState(initialFormState)
+
+useEffect(() =>{
+    gig && setFormState({
+        name: gig.name,
+        date: gig.date,
+        generalLocation: gig.generalLocation,
+        specificLocation: gig.specificLocation,
+        capacity: gig.capacity
+    })
+}, [gig])
+
    
     return (
         <form onSubmit={handleSubmit}>
@@ -78,7 +91,11 @@ function handleSubmit(event) {
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>General Location</label>
-                <input style={inputStyles} required type="text" name="general location" value={formState.generalLocation} placeholder="Enter location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange}></input>
+            </div>
+            <div style={divStyles}>
+                <label style={labelStyles}>Specific Location</label>
+                <input style={inputStyles} required type="text" name="specific location" value={formState.specificLocation} placeholder="Enter specific location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Capacity</label>

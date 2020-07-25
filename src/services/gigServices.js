@@ -1,18 +1,30 @@
 import api from '../config/api'
 
-export async function getEventFromId(gigs,id) {
-  
+export function getEvent(gigs,id) {
     const event =  gigs.find((event) =>  event._id === id)
     console.log(event)
     return event
 }
 
-export async function getAllEvents() {
+export async function getEvents() {
     const response = await api.get("/events")
     return response.data
 }
 
-export async function addEvent(newGig) {
+export async function postEvent(newGig) {
     const response = await api.post("/events", newGig)
     return response.data
 }
+
+// Deletes a post on the server
+export async function removeEvent(id) {
+    const response = await api.delete(`/events/${id}`)
+    return response.data
+}
+
+export async function modifyEvent(event) {
+    const response = await api.put(`/events/${event._id}`, event)
+    return response.data
+}
+
+// export async function applyToEvent

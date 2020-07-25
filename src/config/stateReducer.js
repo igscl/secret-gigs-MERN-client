@@ -21,19 +21,17 @@ export default function (state, action) {
         case "addGig":
             return {
                 ...state,
-                gigs: [action.data, ...state.gigs]
+                gigs: action.data
             }
         case "updateGig":
-            const otherGig = state.gigs.filter((gig) => gig._id !== parseInt(action.data._id))
             return {
                 ...state,
-                gigs: [...otherGig, action.data]
+                gigs: action.data
             }
         case "deleteGig":
-            const updatedGig = state.gigs.filter((gig) => gig._id !== parseInt(action.data))
             return {
                 ...state,
-                gigs: updatedGig
+                gigs: action.data
             }
         default: 
             return state

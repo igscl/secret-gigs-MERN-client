@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useGlobalState } from '../config/globalState'
-import {addEvent} from '../services/gigServices'
+import {postEvent} from '../services/gigServices'
 
 //styling
 const NewGig = ({ history }) => {
@@ -49,10 +49,11 @@ const NewGig = ({ history }) => {
             specificLocation: formState.specificLocation,
             capacity: formState.capacity,
         }
-        addEvent(newGig).then((newGig) => {
+        postEvent(newGig).then((newGig) => {
+        const otherGigs = gigs.filter((gig) => gig._id !== newGig._id)
             dispatch({
                 type: "addGig",
-                data: [newGig, ...gigs]
+                data: [newGig, ...otherGigs]
             })
             // addNewGig(nextGig)
             //  history.push("/")
