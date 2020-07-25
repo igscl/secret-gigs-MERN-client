@@ -27,13 +27,18 @@ const Login = ({history}) => {
     function handleSubmit(event) {
         event.preventDefault()
         // Attempt login on server
-        loginUser(userDetails).then((user) => {
+        loginUser(userDetails).then((response) => {
             setUserInSessionStorage(userDetails.username)
+            console.log("FROM LOGIN USER",response)
             dispatch({
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
-            history.push("/")
+            // dispatch({
+            //     type: "setLoggedInUserEvents",
+            //     data: response.user.eventsApplied
+            // })
+            history.push("/profile")
             
         }).catch((error) => {
             console.log(`An error occurred authenticating: ${error}`)

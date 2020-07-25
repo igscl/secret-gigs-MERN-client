@@ -10,7 +10,7 @@ const Gig = ({history, gig, showControls}) => {
     const {store, dispatch} = useGlobalState();
     const {gigs} = store
 
-    // If we don't have a post, return null
+    // If we don't have a gig, return null
     if (!gig) return null
 
     const linkStyles = {
