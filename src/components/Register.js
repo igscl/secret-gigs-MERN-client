@@ -42,10 +42,10 @@ const Register = ({history}) => {
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
-            // dispatch({
-            //     type: "setLoggedInUserEvents",
-            //     data: response.eventsApplied
-            // })
+            dispatch({
+                type: "setLoggedInUserEvents",
+                data: response.user.phoneNumber
+            })
             history.push("/")
         })
         .catch(error => {

@@ -34,10 +34,11 @@ const Login = ({history}) => {
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
-            // dispatch({
-            //     type: "setLoggedInUserEvents",
-            //     data: response.user.eventsApplied
-            // })
+            dispatch({
+                type: "setLoggedInUserEvents",
+                data: response.user.phoneNumber
+            })
+            console.log("RESPONSE USER",response.user.phoneNumber)
             history.push("/profile")
             
         }).catch((error) => {

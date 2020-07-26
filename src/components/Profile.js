@@ -4,8 +4,6 @@ import { useGlobalState } from '../config/globalState'
 import api from '../config/api'
 import Gig from './Gig'
 
-
-
 function Profile() {
 
     
