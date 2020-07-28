@@ -35,7 +35,7 @@ const Login = ({history}) => {
                 data: userDetails.username
             })
             dispatch({
-                type: "setLoggedInUserEvents",
+                type: "setLoggedInUserPhoneNumber",
                 data: response.user.phoneNumber
             })
             console.log("RESPONSE USER",response.user.phoneNumber)
