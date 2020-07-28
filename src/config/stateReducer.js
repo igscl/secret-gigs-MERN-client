@@ -38,10 +38,15 @@ export default function (state, action) {
                 ...state,
                 gigs: action.data
             }
-        case "setLoggedInUserEvents":
+        case "setLoggedInUserPhoneNumber":
             return {
                 ...state,
                 loggedInUserEvents: action.data
+            }
+        case "selectUsers":
+            return{
+                ...state,
+                gigs: action.data
             }
         default: 
             return state
