@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
-import {divStyles, inputStyles, labelStyles} from '../styles'
+// import {divStyles, inputStyles, labelStyles} from '../styles'
 import  {useGlobalState} from '../config/globalState'
 import {setUserInSessionStorage} from '../services/authServices'
 import {loginUser} from '../services/authServices'
+import {
+    FormControl,
+    InputLabel,
+    Input,
+  } from "@material-ui/core";
 
 // const Login = (props) => {
 //     const {handleLogin, history} = props
@@ -73,22 +78,46 @@ const Login = ({history}) => {
 	// 			});
 	// 			history.push('/profile');
 	// 		})
-		
+        
+    const divStyle= {
+        display: "flex",
+        justifyContent: "center",
+        margin: 30,
+        padding: 30,
+        fontSize: "1.2em",
+        fontFamily: 'Noto Sans SC',
+        width: "50%"
+      }
   
     return (
-        <form onSubmit={handleSubmit}>
+        <div style={divStyle}>
+           <form style={{ width: "70%" }} onSubmit={handleSubmit}>
+             <h1>Login</h1>
             {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
-            <div style={divStyles}>
-                <label style={labelStyles}>Username</label>
-                <input style={inputStyles} required type="text" value={userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
-            </div>
-            <div style={divStyles}>
-                <label style={labelStyles}>Password</label>
-                <input style={inputStyles} required type="password" value={userDetails.password}  name="password" placeholder="Enter a password" onChange={handleChange}></input>
-            </div>
-            <input type="submit" value="Login"></input>
-            
-        </form>
+            {/* <div style={dtyles}> */}
+            <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="name">Username</InputLabel>
+            <Input required type="text" value={userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></Input>
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="email">Password</InputLabel>
+            <Input required type="password" value={userDetails.password}  name="password" placeholder="Enter a password" onChange={handleChange}></Input>
+          </FormControl>
+           <input type="submit" value="Login"></input>
+          {/* <Button variant="contained" color="primary" size="medium">Submit </Button> */}
+ 
+          </form>
+          </div>
     )
 }
 export default Login
+
+            //     {/* <label style={labelStyles}>Username</label>
+            //     <input style={inputStyles} required type="text" value={userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
+            // </div> */}
+            // {/* <div style={divStyles}>
+            //     <label style={labelStyles}>Password</label>
+            //     <input style={inputStyles} required type="password" value={userDetails.password}  name="password" placeholder="Enter a password" onChange={handleChange}></input>
+            // </div>
+            // <input type="submit" value="Login"></input>
+            //  */}
