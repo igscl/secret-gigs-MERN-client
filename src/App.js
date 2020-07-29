@@ -79,14 +79,13 @@ const App = () => {
   return (
    
     <div>
-      
+
        <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
         <AppBar color="inherit" position="static" style={{ background: '#f8c291' }}>
         <Nav />
         </AppBar>
-        <Container fixed style={{ background: '#0000' }}>
-       
+        <Container fixed style={{ background: '#0000', height: '100vh' }}>
       <Switch>  
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 

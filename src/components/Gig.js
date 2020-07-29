@@ -77,9 +77,14 @@ const Gig = ({ history, gig, showControls }) => {
             console.log("error selecting users for event", error)
         })
     }
+    const divStyle= {
+        fontSize: "1.2em",
+        fontFamily: 'Noto Sans SC',
+   
+      }
 
     return (
-        <div>
+        <div style={divStyle}>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
                 <h2>{name}</h2>
 

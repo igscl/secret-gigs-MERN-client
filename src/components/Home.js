@@ -16,10 +16,10 @@ const Home = () => {
 // };
 
   return (
-    <Box bgcolor="text.primary">
-      
-      <Container maxWidth="sm">
-      <Typography component="div" style={{ backgroundColor: 'text.primary', height: '100vh' }} />
+    <Box bgcolor="#000">
+
+      <Container fixed>
+      <Typography component="div" style={{ backgroundColor: '#0000', height: '100vh' }} />
       </Container>
     </Box>
    
