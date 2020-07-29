@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {useGlobalState} from '../config/globalState'
 import {getEvent, modifyEvent} from '../services/gigServices'
+import {
+    FormControl,
+    InputLabel,
+    Input,
+  } from "@material-ui/core";
 
 //styling
 const EditGig = ({history, match}) => {
@@ -10,17 +15,17 @@ const EditGig = ({history, match}) => {
 
     const gig = getEvent(gigs, gigId)
     
-    const divStyles = {
-        display: 'grid',
-        width: '100vw',
-    }
-    const inputStyles = {
-        width: '70vw',
-        margin: '.5em'
-    }
-    const labelStyles = {
-        fontSize: '1.2em'
-    }
+    // const divStyles = {
+    //     display: 'grid',
+    //     width: '100vw',
+    // }
+    // const inputStyles = {
+    //     width: '70vw',
+    //     margin: '.5em'
+    // }
+    // const labelStyles = {
+    //     fontSize: '1.2em'
+    // }
  
 
 
@@ -78,32 +83,68 @@ useEffect(() =>{
     })
 }, [gig])
 
-   
+ const divStyle= {
+        display: "flex",
+        justifyContent: "center",
+        margin: 30,
+        padding: 30,
+        fontSize: "1.2em",
+        fontFamily: 'Noto Sans SC',
+        width: "50%"
+      }
+    
     return (
-        <form onSubmit={handleSubmit}>
-            <div style={divStyles}>
-                <label style={labelStyles}>Name</label>
-                <input style={inputStyles} required type="text" name="name" value={formState.name} placeholder="Enter name of the gig" onChange={handleChange}></input>
-            </div>
-            <div style={divStyles}>
-                <label style={labelStyles}>Date</label>
-                <input style={inputStyles}  required type="text" name="date" value={formState.date} placeholder="Enter date of the gig" onChange={handleChange}></input>
-            </div>
-            <div style={divStyles}>
-                <label style={labelStyles}>General Location</label>
-                <input style={inputStyles} required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange}></input>
-            </div>
-            <div style={divStyles}>
-                <label style={labelStyles}>Specific Location</label>
-                <input style={inputStyles} required type="text" name="specific location" value={formState.specificLocation} placeholder="Enter specific location of the gig" onChange={handleChange}></input>
-            </div>
-            <div style={divStyles}>
-                <label style={labelStyles}>Capacity</label>
-                <input style={inputStyles} required type="text" name="capacity" value={formState.capacity} placeholder="Enter capacity of the gig" onChange={handleChange}></input>
-            </div>
-            <input type="submit" value="Update a gig"></input>
-        </form>
+        <div style={divStyle}>
+        <form style={{ width: "70%" }} onSubmit={handleSubmit}>
+        <h1>Update Gig</h1>
+            <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="name">Name</InputLabel>
+            <Input required type="text" name="name" value={formState.name} placeholder="Enter name of the gig" onChange={handleChange}></Input>
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="date">Date</InputLabel>
+            <Input required type="text" name="date" value={formState.date} placeholder="Enter date of the gig" onChange={handleChange}></Input>
+            </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="general location">General Location</InputLabel>
+            <Input required type="text" name="generalLocation" value={formState.generalLocation} placeholder="Enter location of the gig" onChange={handleChange}></Input>
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="specific location">Specific Location</InputLabel>
+            <Input required type="text" name="specificLocation" value={formState.specificLocation} placeholder="Enter a specific location of the gig" onChange={handleChange}></Input>
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
+            <InputLabel htmlFor="email">Capacity</InputLabel>
+            <Input  required type="number" name="capacity" value={formState.capacity} placeholder="Enter capacity of the gig" onChange={handleChange}></Input>
+          </FormControl>
+           <input type="submit" value="Update"></input>
+           </form>
+          </div>
     )
 }
 
 export default EditGig
+//             {/* <div style={divStyles}>
+//                 <label style={labelStyles}>Name</label>
+//                 <input style={inputStyles} required type="text" name="name" value={formState.name} placeholder="Enter name of the gig" onChange={handleChange}></input>
+//             </div>
+//             <div style={divStyles}>
+//                 <label style={labelStyles}>Date</label>
+//                 <input style={inputStyles}  required type="text" name="date" value={formState.date} placeholder="Enter date of the gig" onChange={handleChange}></input>
+//             </div>
+//             <div style={divStyles}>
+//                 <label style={labelStyles}>General Location</label>
+//                 <input style={inputStyles} required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange}></input>
+//             </div>
+//             <div style={divStyles}>
+//                 <label style={labelStyles}>Specific Location</label>
+//                 <input style={inputStyles} required type="text" name="specific location" value={formState.specificLocation} placeholder="Enter specific location of the gig" onChange={handleChange}></input>
+//             </div>
+//             <div style={divStyles}>
+//                 <label style={labelStyles}>Capacity</label>
+//                 <input style={inputStyles} required type="text" name="capacity" value={formState.capacity} placeholder="Enter capacity of the gig" onChange={handleChange}></input>
+//             </div>
+//             <input type="submit" value="Update a gig"></input>
+//         </form>
+//     )
+// } */}
