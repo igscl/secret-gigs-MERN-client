@@ -8,6 +8,9 @@ const Gigs = () => {
     const { store } = useGlobalState();
     const {gigs} = store
 
+    if(gigs === null) {
+        return <p>loading...</p>
+    }
 
 // const Gigs = ({gigData}) => {
 

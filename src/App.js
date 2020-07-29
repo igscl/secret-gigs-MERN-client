@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer} from 'react'
+import React, { useEffect, useReducer, useState} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import Nav from './components/Nav'
@@ -14,7 +14,7 @@ import Profile from './components/Profile'
 import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
-import {getUserFromSessionStorage} from './services/authServices'
+import {userAuthenticated} from './services/authServices'
 import { getEvents, getEvent } from './services/gigServices'
 
 
@@ -24,9 +24,11 @@ const App = () => {
   //global state
   const initialState = {
     loggedInUser: null,
-    gigs: []
+    gigs: null
   }
   
+// for authenticated user
+  const [authenticatedUser, setAuthenticatedUser] = useState(null)
 
   const [store, dispatch] = useReducer(stateReducer, initialState)
 
@@ -43,9 +45,20 @@ const App = () => {
     })
     }
 
-    useEffect(() => {
+  useEffect(() => { 
+    userAuthenticated()
+      .then((user) => {
+        setAuthenticatedUser(user) 
+          dispatch({ type: "setLoggedInUser", data: user.username }) 
+      })
+      .catch((err) => {
+        // setAuthenticatedUser(null)
+        dispatch({ type: "setLoggedInUser", data: "Guest" }) 
+    })
+  }, [])
+  useEffect(() => {
       fetchAllEvents()
-    },[])
+    },[authenticatedUser])
 
   // useEffect(() => {
   //   //setGigs(gigsData)
@@ -58,16 +71,15 @@ const App = () => {
   // }, [])
 
  
-
- useEffect(() => {
-    //check local storage for a logged in user
-     const user = getUserFromSessionStorage();
-    // user && setLoggedInUser(user)
-    dispatch({
-      type: "setLoggedInUser",
-      data: user 
-    })
- }, [])
+//  useEffect(() => {
+//     //check local storage for a logged in user
+//      const user = getUserFromSessionStorage();
+//     // user && setLoggedInUser(user)
+//     dispatch({
+//       type: "setLoggedInUser",
+//       data: user 
+//     })
+//  }, [])
 
 //  // returns a single gig based on id provided
 //   function getGigFromId (id) {
@@ -86,7 +98,7 @@ const App = () => {
   return (
    
     <div>
-       <StateContext.Provider value={{store, dispatch}} >
+       <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
       <Nav />
       <h1>Secret gig</h1>
