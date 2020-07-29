@@ -26,7 +26,7 @@ const Nav = () => {
         justifyContent: 'space-around',
     }
     const linkStyles = {
-        fontSize: '1.2em',
+        fontSize: '1.7em',
         fontFamily: 'Noto Sans SC',
         textDecoration: 'none',
         margin: '.5em' 
@@ -35,7 +35,7 @@ const Nav = () => {
     const space = {
         marginRight: '1em',
         fontFamily: 'Noto Sans SC',
-        fontSize: '1.2em',
+        fontSize: '1.7em',
     }
     return (
         <div style={divStyles}>
@@ -50,14 +50,16 @@ const Nav = () => {
                 </div> 
             )
             : ( 
-                <div>
+                <div style={divStyles}>
                     <Link style={linkStyles} to="/auth/register">Register</Link>
                     <Link style={linkStyles} to="/auth/login">Login</Link>
                 </div> 
             ) 
             }
+            <div style={divStyles}>
             <Link style={linkStyles} to="/">Home</Link>
             <Link style={linkStyles} to="/about">About</Link>
+            </div>
             </div>
     )
 }

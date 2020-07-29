@@ -16,6 +16,7 @@ import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
 import {getUserFromSessionStorage} from './services/authServices'
 import { getEvents, getEvent } from './services/gigServices'
+import Footer from './components/Footer'
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 
@@ -96,6 +97,7 @@ const App = () => {
       <Route exact path="/auth/register" component={Register} />
       <Route exact path="/auth/login" component={Login} />
       <Route exact path="/profile" component={Profile} />
+      <Footer/>
       <Route component={NotFound} />
       </Switch> 
       </Container>

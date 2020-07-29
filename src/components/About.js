@@ -4,7 +4,7 @@ import React from 'react'
 const About = () => {
 
  const divStyles = {
-    fontSize: "1.2em",
+    fontSize: "1.7em",
     fontFamily: 'Noto Sans SC'
  }
 
