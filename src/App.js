@@ -24,7 +24,7 @@ const App = () => {
   //global state
   const initialState = {
     loggedInUser: null,
-    gigs: null
+    gigs: []
   }
   
 // for authenticated user
@@ -101,7 +101,7 @@ const App = () => {
        <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
       <Nav />
-      <h1>Secret gig</h1>
+      <h1>Secret Gigs</h1>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 

@@ -8,7 +8,7 @@ const Gigs = () => {
     const { store } = useGlobalState();
     const {gigs} = store
 
-    if(gigs === null) {
+    if(gigs === []) {
         return <p>loading...</p>
     }
 
