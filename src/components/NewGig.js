@@ -65,6 +65,8 @@ const NewGig = ({ history }) => {
         })
     }
 
+
+    
     return (
         <form onSubmit={handleSubmit}>
             {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
