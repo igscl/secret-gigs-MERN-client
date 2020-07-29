@@ -27,23 +27,26 @@ const Nav = () => {
 
     const divStyles = {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     }
     const linkStyles = {
         fontSize: '1.2em',
+        fontFamily: 'Noto Sans SC',
         textDecoration: 'none',
         margin: '.5em' 
     }
 
     const space = {
-        marginRight: '1em'
+        marginRight: '1em',
+        fontFamily: 'Noto Sans SC',
+        fontSize: '1.2em',
     }
     return (
         <div style={divStyles}>
             {loggedInUser 
             ? ( 
                 <div>
-                    <span style ={space}>{loggedInUser}</span>
+                    <span style ={space}>{`Welcome, ${loggedInUser}!`}</span>
                     <Link style= {linkStyles} to="/profile">Profile</Link>
                     <Link style= {linkStyles} to="/gigs">Gigs</Link>
                     <Link style= {linkStyles} to="/gigs/new">Add a Gig</Link>

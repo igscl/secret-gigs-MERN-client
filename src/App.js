@@ -16,6 +16,11 @@ import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
 import {getUserFromSessionStorage} from './services/authServices'
 import { getEvents, getEvent } from './services/gigServices'
+import AppBar from '@material-ui/core/AppBar';
+import Container from '@material-ui/core/Container';
+
+
+
 
 
 const App = () => {
@@ -47,15 +52,6 @@ const App = () => {
       fetchAllEvents()
     },[])
 
-  // useEffect(() => {
-  //   //setGigs(gigsData)
-  //   //refactored using reducer
-  //   dispatch({
-  //     type: "setGigs",
-  //     data: gigsData
-      
-  //   })
-  // }, [])
 
  
 
@@ -69,10 +65,6 @@ const App = () => {
     })
  }, [])
 
-//  // returns a single gig based on id provided
-//   function getGigFromId (id) {
-//     return gigs.find((gig) => gig._id === parseInt(id))
-//   }
 
 
    //not needed when connected to mongo
@@ -86,25 +78,30 @@ const App = () => {
   return (
    
     <div>
+      
        <StateContext.Provider value={{store, dispatch}} >
       <BrowserRouter>
-      <Nav />
-      <h1>Secret gig</h1>
-      <Switch>
+        <AppBar color="inherit" position="static" style={{ background: '#f8c291' }}>
+        <Nav />
+        </AppBar>
+        <Container fixed style={{ background: '#0000' }}>
+       
+      <Switch>  
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
       <Route exact path="/gigs/new" render={(props) => <NewGig {...props} nextId={getNextId()} /> } />
       <Route exact path="/gigs/:id" render={(props) => <Gig  {...props} gig={getEvent(gigs, props.match.params.id)} showControls /> } />
-      {/* <Route exact path="/posts/:id" render={(props) => <BlogPost {...props} post={getPostFromId(blogPosts,props.match.params.id)} showControls /> } /> */}
       <Route exact path="/gigs/edit/:id" component= {EditGig} /> 
       <Route exact path="/auth/register" component={Register} />
       <Route exact path="/auth/login" component={Login} />
       <Route exact path="/profile" component={Profile} />
       <Route component={NotFound} />
       </Switch> 
+      </Container>
       </BrowserRouter>
       </StateContext.Provider>
+   
     </div>
   )
 }
