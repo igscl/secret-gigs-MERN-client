@@ -4,10 +4,6 @@ import { useGlobalState } from '../config/globalState'
 import {setUserInSessionStorage} from '../services/authServices'
 import {logoutUser} from '../services/authServices'
 
-// const Nav = (props) => {
-
-//     const {loggedInUser, handleLogout} = props 
-
 const Nav = () => {
     const { store, dispatch } = useGlobalState()
     const {loggedInUser} = store
@@ -27,7 +23,7 @@ const Nav = () => {
 
     const divStyles = {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
     }
     const linkStyles = {
         fontSize: '1.2em',
