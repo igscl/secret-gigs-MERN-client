@@ -53,7 +53,7 @@ const App = () => {
       })
       .catch((err) => {
         // setAuthenticatedUser(null)
-        dispatch({ type: "setLoggedInUser", data: "Guest" }) 
+        dispatch({ type: "setLoggedInUser", data: null }) 
     })
   }, [])
   useEffect(() => {
