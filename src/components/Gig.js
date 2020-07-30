@@ -2,10 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
+// import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 
 
 
 const Gig = ({ history, gig, showControls }) => {
+  
 
     const { store, dispatch } = useGlobalState();
     const { gigs } = store
@@ -13,15 +18,6 @@ const Gig = ({ history, gig, showControls }) => {
     // If we don't have a gig, return null
     if (!gig) return null
 
-    const linkStyles = {
-        textDecoration: 'none',
-        color: 'black'
-    }
-
-    const buttonStyles = {
-        margin: '.5em',
-        fontSize: '1em'
-    }
 
     const { name, date, generalLocation, specificLocation, capacity } = gig
     // const allowEditDelete = loggedInUser && loggedInUser === gig.username
@@ -77,15 +73,41 @@ const Gig = ({ history, gig, showControls }) => {
             console.log("error selecting users for event", error)
         })
     }
+    const linkStyles = {
+        textDecoration: 'none',
+        color: 'black'
+    }
+
+    const buttonStyles = {
+        margin: '.5em',
+        fontSize: '1em'
+    }
     const divStyle= {
         fontSize: "1.2em",
         fontFamily: 'Noto Sans SC',
    
-      }
+    }
+    // const useStyles = makeStyles((theme) => ({
+    //     root: {
+    //       flexGrow: 1,
+    //     },
+    //     paper: {
+    //       padding: theme.spacing(2),
+    //       textAlign: 'center',
+    //       color: theme.palette.text.secondary,
+    //     },
+    //   }));
+
+   
+    //   const classes = useStyles();
 
     return (
         <div style={divStyle}>
+            
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
+            <Grid container spacing={3}>
+        <Grid item xs>
+          <Paper >
                 <h2>{name}</h2>
 
                 <p>Date: {date}</p>
@@ -101,6 +123,9 @@ const Gig = ({ history, gig, showControls }) => {
 
                     </div>
                 )}
+                 </Paper>
+          </Grid>
+          </Grid>
             </Link>
         </div>
     )
