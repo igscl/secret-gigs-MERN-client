@@ -11,7 +11,10 @@ const About = () => {
   return (
     <div style={divStyles}>
     <h1>About</h1>
-    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+    <p>How cool would it be to watch your favourite artists in a live setting with as many people as you could fit in your living room? How about watching your favourite artist in a small bar with your best friends? Have you been craving for a live show, but want to keep with the safety measures in place due to Coronavirus? We're here for you!
+    <br></br>
+    <br></br>
+    And if you're a band... Want to manage cool and safe events for your fans? We've got you covered! You can run this app on your own website!</p>
     </div>
   )
 }
