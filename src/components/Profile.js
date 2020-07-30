@@ -56,7 +56,8 @@ const useStyles = makeStyles({
     return (
         <div style={divStyle}>
             <h1>Profile</h1>
-            {loggedInUser && <h2>{`Hello, ${loggedInUser}`}</h2>}
+            {loggedInUser && <h2>{`Hello, ${loggedInUser}`}</h2>}<br></br>
+            <h2>Your events:</h2>
              {userEvents && userEvents.map((event, index)=> (
                 <Card className={classes.root}>
                 <CardContent>
