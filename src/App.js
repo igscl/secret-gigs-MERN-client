@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
-import Nav from './components/Nav'
+import Navi from './components/Nav'
 import About from './components/About'
 import Gigs from './components/Gigs'
 import Gig from './components/Gig'
@@ -103,7 +103,7 @@ const App = () => {
     <div>
        <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
-      <Nav />
+      <Navi />
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
