@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <Box bgcolor="#000">
-
+      
       <Container fixed>
       <Typography component="div" style={{ backgroundColor: '#0000', height: '100vh' }} />
       </Container>
