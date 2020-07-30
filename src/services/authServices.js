@@ -9,6 +9,13 @@ export function setUserInSessionStorage(user) {
          : sessionStorage.removeItem("loggedInUser")
 }
 
+export async function userAuthenticated() {
+    // call to server to login user
+    // return user info if successful and error if not
+    const response = await api.get("/auth/user")
+    console.log("got user back from server", response) 
+    return response.data
+}
 export async function loginUser(userInfo) {
     // call to server to login user
     // return user info if successful and error if not

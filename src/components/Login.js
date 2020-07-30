@@ -14,7 +14,7 @@ const Login = ({history}) => {
     } 
     const [errorMessage, setErrorMessage] = useState(null);
     const [userDetails,setUserDetails] = useState(initialFormState);
-    const {dispatch} = useGlobalState()
+    const {dispatch, setAuthenticatedUser} = useGlobalState()
 
     function handleChange(event) {
         const name = event.target.name
@@ -39,8 +39,8 @@ const Login = ({history}) => {
                 data: response.user.phoneNumber
             })
             console.log("RESPONSE USER",response.user.phoneNumber)
-            history.push("/profile")
-            
+            setAuthenticatedUser(response.user)
+            history.push("/profile")            
         }).catch((error) => {
             console.log(`An error occurred authenticating: ${error}`)
             setErrorMessage("Login failed. Please check your username and password");
