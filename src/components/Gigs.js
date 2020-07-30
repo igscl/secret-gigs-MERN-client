@@ -12,6 +12,7 @@ const Gigs = () => {
     const { store } = useGlobalState();
     const {gigs} = store
 
+
     const divStyle= {
         fontSize: "1.2em",
         fontFamily: 'Noto Sans SC',
@@ -28,6 +29,10 @@ const Gigs = () => {
         },
       }));
       const classes = useStyles();
+
+    if(gigs === []) {
+        return <p>loading...</p>
+    }
 
 
     return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer} from 'react'
+import React, { useEffect, useReducer, useState} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import Nav from './components/Nav'
@@ -14,7 +14,7 @@ import Profile from './components/Profile'
 import NotFound from './components/NotFound'
 import stateReducer from './config/stateReducer'
 import { StateContext } from './config/globalState'
-import {getUserFromSessionStorage} from './services/authServices'
+import {userAuthenticated} from './services/authServices'
 import { getEvents, getEvent } from './services/gigServices'
 import Footer from './components/Footer'
 import AppBar from '@material-ui/core/AppBar';
@@ -33,6 +33,8 @@ const App = () => {
     gigs: []
   }
   
+// for authenticated user
+  const [authenticatedUser, setAuthenticatedUser] = useState(null)
 
   const [store, dispatch] = useReducer(stateReducer, initialState)
 
@@ -49,22 +51,32 @@ const App = () => {
     })
     }
 
-    useEffect(() => {
+  useEffect(() => { 
+    userAuthenticated()
+      .then((user) => {
+        setAuthenticatedUser(user) 
+          dispatch({ type: "setLoggedInUser", data: user.username }) 
+      })
+      .catch((err) => {
+        // setAuthenticatedUser(null)
+        dispatch({ type: "setLoggedInUser", data: "Guest" }) 
+    })
+  }, [])
+  useEffect(() => {
       fetchAllEvents()
-    },[])
+    },[authenticatedUser])
 
 
  
-
- useEffect(() => {
-    //check local storage for a logged in user
-     const user = getUserFromSessionStorage();
-    // user && setLoggedInUser(user)
-    dispatch({
-      type: "setLoggedInUser",
-      data: user 
-    })
- }, [])
+//  useEffect(() => {
+//     //check local storage for a logged in user
+//      const user = getUserFromSessionStorage();
+//     // user && setLoggedInUser(user)
+//     dispatch({
+//       type: "setLoggedInUser",
+//       data: user 
+//     })
+//  }, [])
 
 
 
@@ -80,13 +92,14 @@ const App = () => {
    
     <div>
 
-       <StateContext.Provider value={{store, dispatch}} >
+       <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
         <AppBar color="inherit" position="static" style={{ background: '#f8c291' }}>
         <Nav />
         </AppBar>
         <Container fixed style={{ background: '#0000', height: '100vh' }}>
       <Switch>  
+
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
       <Route exact path="/gigs" component={Gigs} />
