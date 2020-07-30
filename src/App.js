@@ -104,7 +104,6 @@ const App = () => {
        <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
       <Nav />
-      <h1>Secret Gigs</h1>
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
