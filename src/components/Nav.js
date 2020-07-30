@@ -114,27 +114,46 @@ const Navi = () => {
 
 {/* test */}
 
-    {
-        {loggedInUser}?
-        <NavItem>
-        <NavLink
-          href="/auth/register"
-          data-cy="register"
-        >
-          <i className="nc-icon nc-book-bookmark" /> Uno
-        </NavLink>
-      </NavItem>
-        : 
-        <NavItem>
-        <NavLink
-          href="/auth/login"
-          data-cy="login"             >
-          <i className="nc-icon nc-book-bookmark" /> Dos
-        </NavLink>
-      </NavItem>
-    }
-{/* test */}
-
+          {loggedInUser 
+            ? ( 
+                <React.Fragment>
+                <NavItem>
+                <NavLink
+                  href="/profile"             >
+                  <i className="nc-icon nc-book-bookmark" /> Profile
+                </NavLink>
+              </NavItem>
+  
+            <NavItem>
+                <NavLink
+                  href="/gigs"
+                  data-cy="gigs"              >
+                  <i className="nc-icon nc-book-bookmark" /> Gigs
+                </NavLink>
+              </NavItem>
+  
+            <NavItem>
+                <NavLink
+                  href="/gigs/new"
+                  data-cy="addGig"
+                >
+                  <i className="nc-icon nc-book-bookmark" /> Add a Gig
+                </NavLink>
+              </NavItem>
+  
+              <NavItem>
+                <NavLink
+                  href="/"
+                  onClick={handleLogout}
+                  data-cy="logout"
+                >
+                  <i className="nc-icon nc-book-bookmark" /> Logout
+                </NavLink>
+              </NavItem>
+              </React.Fragment>
+            )
+            : ( 
+                <React.Fragment>
           <NavItem>
               <NavLink
                 href="/auth/register"
@@ -150,61 +169,36 @@ const Navi = () => {
                 <i className="nc-icon nc-book-bookmark" /> Login
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                href="/profile"             >
-                <i className="nc-icon nc-book-bookmark" /> Profile
-              </NavLink>
-            </NavItem>
+                            </React.Fragment>
+            ) 
+            }
+{/* test */}
 
-          <NavItem>
-              <NavLink
-                href="/gigs"
-                data-cy="gigs"              >
-                <i className="nc-icon nc-book-bookmark" /> Gigs
-              </NavLink>
-            </NavItem>
 
-          <NavItem>
-              <NavLink
-                href="/gigs/new"
-                data-cy="addGig"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Add a Gig
-              </NavLink>
-            </NavItem>
 
-            <NavItem>
-              <NavLink
-                href="/"
-                onClick={handleLogout}
-                data-cy="logout"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Logout
-              </NavLink>
-            </NavItem>
+
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
         // <div data-cy="navbar" style={divStyles}>
-        //     {loggedInUser 
-        //     ? ( 
-        //         <div>
-        //             <span style ={space}>{loggedInUser}</span>
-        //             <Link style= {linkStyles} to="/profile">Profile</Link>
-        //             <Link style= {linkStyles} data-cy="gigs" to="/gigs">Gigs</Link>
-        //             <Link style= {linkStyles} data-cy="addGig" to="/gigs/new">Add a Gig</Link>
-        //             <Link style={linkStyles} data-cy="logout" to="/" onClick={handleLogout}>Logout</Link>
-        //         </div> 
-        //     )
-        //     : ( 
-        //         <div>
-        //             <Link style={linkStyles} data-cy="register" to="/auth/register">Register</Link>
-        //             <Link style={linkStyles} data-cy="login" to="/auth/login">Login</Link>
-        //         </div> 
-        //     ) 
-        //     }
+            // {loggedInUser 
+            // ? ( 
+            //     <div>
+            //         <span style ={space}>{loggedInUser}</span>
+            //         <Link style= {linkStyles} to="/profile">Profile</Link>
+            //         <Link style= {linkStyles} data-cy="gigs" to="/gigs">Gigs</Link>
+            //         <Link style= {linkStyles} data-cy="addGig" to="/gigs/new">Add a Gig</Link>
+            //         <Link style={linkStyles} data-cy="logout" to="/" onClick={handleLogout}>Logout</Link>
+            //     </div> 
+            // )
+            // : ( 
+            //     <div>
+            //         <Link style={linkStyles} data-cy="register" to="/auth/register">Register</Link>
+            //         <Link style={linkStyles} data-cy="login" to="/auth/login">Login</Link>
+            //     </div> 
+            // ) 
+            // }
         //     <Link style={linkStyles} data-cy="home" to="/">Home</Link>
         //     <Link style={linkStyles} to="/about">About</Link>
         //     </div>
