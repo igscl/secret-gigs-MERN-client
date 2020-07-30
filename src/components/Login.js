@@ -29,16 +29,17 @@ const Login = ({history}) => {
         // Attempt login on server
         loginUser(userDetails).then((response) => {
             setUserInSessionStorage(userDetails.username)
+            // setAdminInSessionStorage(userDetails.isAdmin)
             console.log("FROM LOGIN USER",response)
             dispatch({
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
             dispatch({
-                type: "setLoggedInUserPhoneNumber",
-                data: response.user.phoneNumber
+                type: "setLoggedInUserIsAdmin",
+                data: response.user.isAdmin
             })
-            console.log("RESPONSE USER",response.user.phoneNumber)
+            console.log("RESPONSE USER",response.user.isAdmin)
             setAuthenticatedUser(response.user)
             history.push("/profile")            
         }).catch((error) => {

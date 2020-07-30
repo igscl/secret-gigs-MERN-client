@@ -8,7 +8,7 @@ import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigSer
 const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
-    const { gigs } = store
+    const { gigs, loggedInUserIsAdmin } = store
 
     // If we don't have a gig, return null
     if (!gig) return null
@@ -77,7 +77,7 @@ const Gig = ({ history, gig, showControls }) => {
             console.log("error selecting users for event", error)
         })
     }
-
+    console.log(loggedInUserIsAdmin)
     return (
         <div>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
@@ -87,13 +87,18 @@ const Gig = ({ history, gig, showControls }) => {
                 <p>General Location: {generalLocation}</p>
                 <p>Specific Location: {specificLocation}</p>
                 <p>Capacity: {capacity}</p>
-                {showControls && (
+
+                {showControls && loggedInUserIsAdmin &&(
                     <div>
                         <button style={buttonStyles} onClick={handleEdit}>Update</button>
                         <button style={buttonStyles} onClick={handleDelete}>Delete</button>
-                        <button style={buttonStyles} onClick={handleApply} >Apply!</button>
                         <button style={buttonStyles} onClick={handleSelect} >Select Users</button>
 
+                    </div>
+                )}
+                {showControls &&(
+                    <div>
+                        <button style={buttonStyles} onClick={handleApply} >Apply!</button>
                     </div>
                 )}
             </Link>

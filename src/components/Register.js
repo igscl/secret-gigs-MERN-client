@@ -43,8 +43,8 @@ const Register = ({history}) => {
                 data: userDetails.username
             })
             dispatch({
-                type: "setLoggedInUserPhoneNumber",
-                data: response.user.phoneNumber
+                type: "setLoggedInUserIsAdmin",
+                data: response.user.isAdmin
             })
             history.push("/")
         })
