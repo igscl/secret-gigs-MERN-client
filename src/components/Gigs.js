@@ -15,7 +15,7 @@ const Gigs = () => {
 // const Gigs = ({gigData}) => {
 
     return (
-        <div>
+        <div data-cy="gigsProfile">
             {gigs.sort((a,b) => b.date - a.date)
         .map((gig) => <Gig key={gig._id} gig={gig} showControls={false}/>)}
         {/* {gigData.sort((a,b) => b.date - a.date)

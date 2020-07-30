@@ -66,29 +66,29 @@ const NewGig = ({ history }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form data-cy="addGigForm" onSubmit={handleSubmit}>
             {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
             <div style={divStyles}>
                 <label style={labelStyles}>Name</label>
-                <input style={inputStyles} required type="text" name="name" placeholder="Enter name of the gig" onChange={handleChange}></input>
+                <input style={inputStyles}  data-cy="name"  required type="text" name="name" placeholder="Enter name of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Date</label>
-                <input style={inputStyles} required type="text" name="date" placeholder="Enter date of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="date" required type="text" name="date" placeholder="Enter date of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>General Location</label>
-                <input style={inputStyles} required type="text" name="generalLocation" placeholder="Enter location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="generalLocation" required type="text" name="generalLocation" placeholder="Enter location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Specific Location</label>
-                <input style={inputStyles} required type="text" name="specificLocation" placeholder="Enter a specific location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="specificLocation" required type="text" name="specificLocation" placeholder="Enter a specific location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Capacity</label>
-                <input style={inputStyles} required type="number" name="capacity" placeholder="Enter capacity of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="capacity" required type="number" name="capacity" placeholder="Enter capacity of the gig" onChange={handleChange}></input>
             </div>
-            <input type="submit" value="Add a gig"></input>
+            <input data-cy="addGigButton"  type="submit" value="Add a gig"></input>
         </form>
     )
 }

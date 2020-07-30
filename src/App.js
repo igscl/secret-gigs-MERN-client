@@ -24,6 +24,7 @@ const App = () => {
   //global state
   const initialState = {
     loggedInUser: null,
+    setLoggedInUserIsAdmin: null,
     gigs: []
   }
   
@@ -50,10 +51,12 @@ const App = () => {
       .then((user) => {
         setAuthenticatedUser(user) 
           dispatch({ type: "setLoggedInUser", data: user.username }) 
+          dispatch({ type: "setLoggedInUserIsAdmin", data: user.isAdmin }) 
       })
       .catch((err) => {
         // setAuthenticatedUser(null)
-        dispatch({ type: "setLoggedInUser", data: null }) 
+        dispatch({ type: "setLoggedInUser", data: null })
+        dispatch({ type: "setLoggedInUserIsAdmin", data: null })
     })
   }, [])
   useEffect(() => {

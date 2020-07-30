@@ -38,10 +38,10 @@ export default function (state, action) {
                 ...state,
                 gigs: action.data
             }
-        case "setLoggedInUserPhoneNumber":
+        case "setLoggedInUserIsAdmin":
             return {
                 ...state,
-                loggedInUserEvents: action.data
+                loggedInUserIsAdmin: action.data
             }
         case "selectUsers":
             return{

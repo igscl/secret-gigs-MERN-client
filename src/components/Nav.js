@@ -39,25 +39,25 @@ const Nav = () => {
         marginRight: '1em'
     }
     return (
-        <div style={divStyles}>
+        <div data-cy="navbar" style={divStyles}>
             {loggedInUser 
             ? ( 
                 <div>
                     <span style ={space}>{loggedInUser}</span>
                     <Link style= {linkStyles} to="/profile">Profile</Link>
-                    <Link style= {linkStyles} to="/gigs">Gigs</Link>
-                    <Link style= {linkStyles} to="/gigs/new">Add a Gig</Link>
-                    <Link style={linkStyles} to="/" onClick={handleLogout}>Logout</Link>
+                    <Link style= {linkStyles} data-cy="gigs" to="/gigs">Gigs</Link>
+                    <Link style= {linkStyles} data-cy="addGig" to="/gigs/new">Add a Gig</Link>
+                    <Link style={linkStyles} data-cy="logout" to="/" onClick={handleLogout}>Logout</Link>
                 </div> 
             )
             : ( 
                 <div>
-                    <Link style={linkStyles} to="/auth/register">Register</Link>
-                    <Link style={linkStyles} to="/auth/login">Login</Link>
+                    <Link style={linkStyles} data-cy="register" to="/auth/register">Register</Link>
+                    <Link style={linkStyles} data-cy="login" to="/auth/login">Login</Link>
                 </div> 
             ) 
             }
-            <Link style={linkStyles} to="/">Home</Link>
+            <Link style={linkStyles} data-cy="home" to="/">Home</Link>
             <Link style={linkStyles} to="/about">About</Link>
             </div>
     )

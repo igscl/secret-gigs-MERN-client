@@ -80,28 +80,28 @@ useEffect(() =>{
 
    
     return (
-        <form onSubmit={handleSubmit}>
+        <form data-cy="editGigForm" onSubmit={handleSubmit}>
             <div style={divStyles}>
                 <label style={labelStyles}>Name</label>
-                <input style={inputStyles} required type="text" name="name" value={formState.name} placeholder="Enter name of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="editName" required type="text" name="name" value={formState.name} placeholder="Enter name of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Date</label>
-                <input style={inputStyles}  required type="text" name="date" value={formState.date} placeholder="Enter date of the gig" onChange={handleChange}></input>
+                <input style={inputStyles}  data-cy="editDate" required type="text" name="date" value={formState.date} placeholder="Enter date of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>General Location</label>
-                <input style={inputStyles} required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="editGeneralLocation" required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Specific Location</label>
-                <input style={inputStyles} required type="text" name="specific location" value={formState.specificLocation} placeholder="Enter specific location of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="editSpecificLocation" required type="text" name="specific location" value={formState.specificLocation} placeholder="Enter specific location of the gig" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Capacity</label>
-                <input style={inputStyles} required type="text" name="capacity" value={formState.capacity} placeholder="Enter capacity of the gig" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="editCapacity" required type="text" name="capacity" value={formState.capacity} placeholder="Enter capacity of the gig" onChange={handleChange}></input>
             </div>
-            <input type="submit" value="Update a gig"></input>
+            <input data-cy="editGigButtonSubmit" type="submit" value="Update a gig"></input>
         </form>
     )
 }
