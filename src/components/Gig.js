@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
@@ -8,7 +8,8 @@ import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigSer
 const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
-    const { gigs, loggedInUserIsAdmin } = store
+    // const [authenticatedUser] = useState()
+    const { gigs, loggedInUserIsAdmin, loggedInUser} = store
 
     // If we don't have a gig, return null
     if (!gig) return null
@@ -77,7 +78,8 @@ const Gig = ({ history, gig, showControls }) => {
             console.log("error selecting users for event", error)
         })
     }
-    console.log(loggedInUserIsAdmin)
+    console.log("What I'm looking for",loggedInUser)
+    console.log("number 2",loggedInUserIsAdmin)
     return (
         <div>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
@@ -85,7 +87,9 @@ const Gig = ({ history, gig, showControls }) => {
 
                 <p>Date: {date}</p>
                 <p>General Location: {generalLocation}</p>
+
                 <p>Specific Location: {specificLocation}</p>
+                
                 <p>Capacity: {capacity}</p>
 
                 {showControls && loggedInUserIsAdmin &&(
