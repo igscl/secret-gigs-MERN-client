@@ -1,12 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import {setUserInSessionStorage} from '../services/authServices'
 import {logoutUser} from '../services/authServices'
 import classnames from "classnames";
 // reactstrap components
 import {
-  Button,
   Collapse,
   NavbarBrand,
   Navbar,
