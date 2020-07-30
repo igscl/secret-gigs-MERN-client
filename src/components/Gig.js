@@ -81,7 +81,7 @@ const Gig = ({ history, gig, showControls }) => {
     return (
         <div>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
-                <h2>{name}</h2>
+                <h2 data-cy="gigTitle">{name}</h2>
 
                 <p>Date: {date}</p>
                 <p>General Location: {generalLocation}</p>
@@ -90,7 +90,7 @@ const Gig = ({ history, gig, showControls }) => {
 
                 {showControls && loggedInUserIsAdmin &&(
                     <div>
-                        <button style={buttonStyles} onClick={handleEdit}>Update</button>
+                        <button style={buttonStyles} data-cy="editGigButton" onClick={handleEdit}>Update</button>
                         <button style={buttonStyles} onClick={handleDelete}>Delete</button>
                         <button style={buttonStyles} onClick={handleSelect} >Select Users</button>
 
@@ -98,7 +98,7 @@ const Gig = ({ history, gig, showControls }) => {
                 )}
                 {showControls &&(
                     <div>
-                        <button style={buttonStyles} onClick={handleApply} >Apply!</button>
+                        <button style={buttonStyles} data-cy="apply-button" onClick={handleApply} >Apply!</button>
                     </div>
                 )}
             </Link>

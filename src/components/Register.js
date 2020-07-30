@@ -57,29 +57,29 @@ const Register = ({history}) => {
 // }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form data-cy="register-form" onSubmit={handleSubmit}>
             {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
             <div style={divStyles}>
                 <label style={labelStyles}>Username</label>
-                <input style={inputStyles} required type="text" value= {userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="username" required type="text" value= {userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Email</label>
-                <input style={inputStyles} required type="email" value= {userDetails.email}  name="email" placeholder="Enter an email" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="email" required type="email" value= {userDetails.email}  name="email" placeholder="Enter an email" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Phone number</label>
-                <input style={inputStyles} required type="phone number" value= {userDetails.phoneNumber}  name="phoneNumber" placeholder="Enter a phone number" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="phone-number" required type="phone number" value= {userDetails.phoneNumber}  name="phoneNumber" placeholder="Enter a phone number" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Password</label>
-                <input style={inputStyles} required type="password" value= {userDetails.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
+                <input style={inputStyles} data-cy="password" required type="password" value= {userDetails.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
             </div>
             {/* <label for="avatar">Choose a profile picture:</label>
             <div>
             <input style={inputStyles} type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></input>
             </div> */}
-            <input type="submit" value="Register"></input>
+            <input data-cy="register-button" type="submit" value="Register"></input>
             
         </form>
     )
