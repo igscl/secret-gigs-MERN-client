@@ -56,7 +56,7 @@ const Gig = ({ history, gig, showControls }) => {
             const updatedGigs = gigs.filter((event) => event._id !== gig._id)
             dispatch({
                 type: "applyGig",
-                data: updatedGigs
+                data: [gig, ...updatedGigs]
             })
             history.push("/gigs")
         }).catch((error) => {
@@ -78,8 +78,8 @@ const Gig = ({ history, gig, showControls }) => {
             console.log("error selecting users for event", error)
         })
     }
-    console.log("What I'm looking for",loggedInUser)
-    console.log("number 2",loggedInUserIsAdmin)
+    // console.log("What I'm looking for",loggedInUser)
+    // console.log("number 2",loggedInUserIsAdmin)
     return (
         <div>
             <Link style={linkStyles} to={`/gigs/${gig._id}`}>
