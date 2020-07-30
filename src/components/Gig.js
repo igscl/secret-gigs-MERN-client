@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
@@ -9,7 +9,7 @@ const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
     // const [authenticatedUser] = useState()
-    const { gigs, loggedInUserIsAdmin, loggedInUser} = store
+    const { gigs, loggedInUserIsAdmin} = store
 
     // If we don't have a gig, return null
     if (!gig) return null
