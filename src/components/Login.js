@@ -29,16 +29,17 @@ const Login = ({history}) => {
         // Attempt login on server
         loginUser(userDetails).then((response) => {
             setUserInSessionStorage(userDetails.username)
+            // setAdminInSessionStorage(userDetails.isAdmin)
             console.log("FROM LOGIN USER",response)
             dispatch({
                 type: "setLoggedInUser",
                 data: userDetails.username
             })
             dispatch({
-                type: "setLoggedInUserPhoneNumber",
-                data: response.user.phoneNumber
+                type: "setLoggedInUserIsAdmin",
+                data: response.user.isAdmin
             })
-            console.log("RESPONSE USER",response.user.phoneNumber)
+            console.log("RESPONSE USER",response.user.isAdmin)
             setAuthenticatedUser(response.user)
             history.push("/profile")            
         }).catch((error) => {
@@ -76,17 +77,17 @@ const Login = ({history}) => {
 		
   
     return (
-        <form onSubmit={handleSubmit}>
+        <form data-cy="login-form" onSubmit={handleSubmit}>
             {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
             <div style={divStyles}>
                 <label style={labelStyles}>Username</label>
-                <input style={inputStyles} required type="text" value={userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
+                <input data-cy="username"  style={inputStyles} required type="text" value={userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
             </div>
             <div style={divStyles}>
                 <label style={labelStyles}>Password</label>
-                <input style={inputStyles} required type="password" value={userDetails.password}  name="password" placeholder="Enter a password" onChange={handleChange}></input>
+                <input data-cy="password" style={inputStyles} required type="password" value={userDetails.password}  name="password" placeholder="Enter a password" onChange={handleChange}></input>
             </div>
-            <input type="submit" value="Login"></input>
+            <input data-cy="login-button" type="submit" value="Login"></input>
             
         </form>
     )

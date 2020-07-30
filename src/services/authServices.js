@@ -4,10 +4,21 @@ export function getUserFromSessionStorage() {
     return sessionStorage.getItem("loggedInUser")
 }
 
+export function getAdminFromSessionStorage() {
+    return sessionStorage.getItem("loggedInUserIsAdmin")
+}
+
+export function setAdminInSessionStorage(admin) {
+    admin ? sessionStorage.setItem("loggedInUserIsAdmin", admin)
+         : sessionStorage.removeItem("loggedInUserIsAdmin")
+}
+
 export function setUserInSessionStorage(user) {
     user ? sessionStorage.setItem("loggedInUser", user)
          : sessionStorage.removeItem("loggedInUser")
 }
+
+
 
 export async function userAuthenticated() {
     // call to server to login user

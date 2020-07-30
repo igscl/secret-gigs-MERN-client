@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
-import Nav from './components/Nav'
+import Navi from './components/Nav'
 import About from './components/About'
 import Gigs from './components/Gigs'
 import Gig from './components/Gig'
@@ -24,6 +24,7 @@ const App = () => {
   //global state
   const initialState = {
     loggedInUser: null,
+    setLoggedInUserIsAdmin: null,
     gigs: []
   }
   
@@ -50,10 +51,12 @@ const App = () => {
       .then((user) => {
         setAuthenticatedUser(user) 
           dispatch({ type: "setLoggedInUser", data: user.username }) 
+          dispatch({ type: "setLoggedInUserIsAdmin", data: user.isAdmin }) 
       })
       .catch((err) => {
         // setAuthenticatedUser(null)
-        dispatch({ type: "setLoggedInUser", data: null }) 
+        dispatch({ type: "setLoggedInUser", data: null })
+        dispatch({ type: "setLoggedInUserIsAdmin", data: null })
     })
   }, [])
   useEffect(() => {
@@ -100,8 +103,7 @@ const App = () => {
     <div>
        <StateContext.Provider value={{store, dispatch, authenticatedUser, setAuthenticatedUser}} >
       <BrowserRouter>
-      <Nav />
-      <h1>Secret Gigs</h1>
+      <Navi />
       <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} /> 
