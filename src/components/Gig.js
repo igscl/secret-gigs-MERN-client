@@ -87,13 +87,13 @@ const Gig = ({ history, gig, showControls }) => {
     return (
         <Container>
             <p></p>
-            <Row className="justify-content-center">
-                <Col className="col-sm">
+            <Row className="row justify-content-md-center">
+                <Col className="col-5">
                     <Card
-                        bg={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("danger")}
-                        key={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("danger")}
-                        text={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("light") : ("danger") === 'light' ? 'dark' : 'white'}
-                        style={{ width: '18rem' }}
+                        bg={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("light")}
+                        key={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("light")}
+                        text={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("light") : ("light") === 'light' ? 'dark' : 'white'}
+                        // style={{ width: '50%' }}
                         className="mb-2"
                     >
                         <Card.Header>{name}</Card.Header>
