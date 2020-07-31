@@ -110,6 +110,7 @@ const Gig = ({ history, gig, showControls }) => {
                                     </p>
                                 )}
                                 <p>Capacity: {capacity}</p>
+                                <a href={`/gigs/${gig._id}`} class="stretched-link"></a>
                                 {showControls && loggedInUserIsAdmin && (
                                     <div>
                                         <button style={buttonStyles} data-cy="editGigButton" onClick={handleEdit}>Update</button>
