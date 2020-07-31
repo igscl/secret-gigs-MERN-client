@@ -4,12 +4,11 @@ import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
 
 
-
 const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
     // const [authenticatedUser] = useState()
-    const { gigs, loggedInUserIsAdmin} = store
+    const { gigs, loggedInUserIsAdmin, loggedInUser} = store
 
     // If we don't have a gig, return null
     if (!gig) return null
@@ -88,8 +87,9 @@ const Gig = ({ history, gig, showControls }) => {
                 <p>Date: {date}</p>
                 <p>General Location: {generalLocation}</p>
 
+                {(gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) &&(
                 <p>Specific Location: {specificLocation}</p>
-                
+                )}
                 <p>Capacity: {capacity}</p>
 
                 {showControls && loggedInUserIsAdmin &&(
