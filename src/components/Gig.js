@@ -4,6 +4,8 @@ import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
 
 
+
+
 const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
