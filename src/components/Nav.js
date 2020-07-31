@@ -13,6 +13,13 @@ import {
   Nav,
   Container,
 } from "reactstrap";
+// import Collapse from 'react-bootstrap/Collapse'
+// import NavbarBrand from 'react-bootstrap/NavbarBrand'
+// import Navbar from 'react-bootstrap/Navbar'
+// import NavItem from 'react-bootstrap/NavItem'
+// import NavLink from 'react-bootstrap/NavLink'
+// import Nav from 'react-bootstrap/Nav'
+// import Container from 'react-bootstrap/Container'
 // const Nav = (props) => {
 
 //     const {loggedInUser, handleLogout} = props 
