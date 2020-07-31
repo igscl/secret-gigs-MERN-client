@@ -23,7 +23,7 @@ function Profile() {
 
     return (
         
-        <div className>
+        <div>
             {/* {posts.map(post =>  (post.id < 2) && <Post key={post.id} title={post.title} />} */}
             {/* applicants.find(x => (x.username === "superuser" && x.accepted === false)) */}
             <p></p>

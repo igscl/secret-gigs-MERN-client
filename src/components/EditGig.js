@@ -15,17 +15,17 @@ const EditGig = ({history, match}) => {
 
     const gig = getEvent(gigs, gigId)
     
-    const divStyles = {
-        display: 'grid',
-        width: '100vw',
-    }
-    const inputStyles = {
-        width: '70vw',
-        margin: '.5em'
-    }
-    const labelStyles = {
-        fontSize: '1.2em'
-    }
+    // const divStyles = {
+    //     display: 'grid',
+    //     width: '100vw',
+    // }
+    // const inputStyles = {
+    //     width: '70vw',
+    //     margin: '.5em'
+    // }
+    // const labelStyles = {
+    //     fontSize: '1.2em'
+    // }
  
 
 
@@ -106,7 +106,7 @@ useEffect(() =>{
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>General Location</Form.Label>
-                            <Form.Control data-cy="editGeneralLocation" required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" />
+                            <Form.Control data-cy="editGeneralLocation" required type="text" name="general location" value={formState.generalLocation} placeholder="Enter general location of the gig" onChange={handleChange} />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Specific Location</Form.Label>

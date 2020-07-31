@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useGlobalState } from '../config/globalState'
 import { removeEvent, applyToEvent, selectRandomUsers } from '../services/gigServices'
 import Container from 'react-bootstrap/Container'
@@ -16,15 +16,15 @@ const Gig = ({ history, gig, showControls }) => {
     // If we don't have a gig, return null
     if (!gig) return null
 
-    const linkStyles = {
-        textDecoration: 'none',
-        color: 'black'
-    }
+    // const linkStyles = {
+    //     textDecoration: 'none',
+    //     color: 'black'
+    // }
 
-    const buttonStyles = {
-        margin: '.5em',
-        fontSize: '1em'
-    }
+    // const buttonStyles = {
+    //     margin: '.5em',
+    //     fontSize: '1em'
+    // }
 
     const { name, date, generalLocation, specificLocation, capacity } = gig
     // const allowEditDelete = loggedInUser && loggedInUser === gig.username
@@ -100,33 +100,33 @@ const Gig = ({ history, gig, showControls }) => {
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Text>
-                                <p>Date: {date}</p>
-                                <p>General Location: {generalLocation}</p>
-
-                                {gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && (
+                                Date: {date}
+                                <a href={`/gigs/${gig._id}`} className="stretched-link"> </a>
+                            
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <p>General Location: {generalLocation}</p>
+                    <p>Capacity: {capacity}</p>
+                    {gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && (
                                     <p>Specific Location: <span role="img" aria-label="sheep">🎉</span>
                                         {specificLocation}
                                         <span role="img" aria-label="sheep">🎉</span>
                                     </p>
                                 )}
-                                <p>Capacity: {capacity}</p>
-                                <a href={`/gigs/${gig._id}`} class="stretched-link"></a>
-                                {showControls && loggedInUserIsAdmin && (
+                    {showControls && loggedInUserIsAdmin && (
                                     <div>
-                                        <button style={buttonStyles} data-cy="editGigButton" onClick={handleEdit}>Update</button>
-                                        <button style={buttonStyles} onClick={handleDelete}>Delete</button>
-                                        <button style={buttonStyles} onClick={handleSelect} >Select Users</button>
+                                        <button className="btn btn-primary btn-lg btn-block" data-cy="editGigButton" onClick={handleEdit}>Update</button>
+                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleDelete}>Delete</button>
+                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleSelect} >Select Users</button>
 
                                     </div>
                                 )}
                                 {showControls && (
                                     <div>
-                                        <button style={buttonStyles} data-cy="apply-button" onClick={handleApply} >Apply!</button>
+                                        <button className="btn btn-primary btn-lg btn-block" data-cy="apply-button" onClick={handleApply} >Apply!</button>
                                     </div>
                                 )}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
                 </Col>
             </Row>
 

@@ -13,17 +13,17 @@ const NewGig = ({ history }) => {
     const { store, dispatch } = useGlobalState();
     const {gigs} = store
 
-    const divStyles = {
-        display: 'grid',
-        width: '100vw',
-    }
-    const inputStyles = {
-        width: '70vw',
-        margin: '.5em'
-    }
-    const labelStyles = {
-        fontSize: '1.2em'
-    }
+    // const divStyles = {
+    //     display: 'grid',
+    //     width: '100vw',
+    // }
+    // const inputStyles = {
+    //     width: '70vw',
+    //     margin: '.5em'
+    // }
+    // const labelStyles = {
+    //     fontSize: '1.2em'
+    // }
     //state
     const initialFormState = {
         name: "",
