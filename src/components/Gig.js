@@ -88,7 +88,10 @@ const Gig = ({ history, gig, showControls }) => {
                 <p>General Location: {generalLocation}</p>
 
                 {(gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) &&(
-                <p>Specific Location: {specificLocation}</p>
+                <p>Specific Location: <span role="img" aria-label="sheep">🎉</span>
+                {specificLocation}
+                <span role="img" aria-label="sheep">🎉</span>
+                </p>
                 )}
                 <p>Capacity: {capacity}</p>
 
