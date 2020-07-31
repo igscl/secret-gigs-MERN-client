@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {divStyles, inputStyles, labelStyles} from '../styles'
+// import {divStyles, inputStyles, labelStyles} from '../styles'
 import  {useGlobalState} from '../config/globalState'
 import {setUserInSessionStorage} from '../services/authServices'
 import {loginUser} from '../services/authServices'

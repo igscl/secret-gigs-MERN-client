@@ -55,7 +55,7 @@ function handleSubmit(event) {
             type: "updateGig",
             data: [updatedGig, ...otherGigs]
         })
-        history.push("/gigs")
+        history.push(`/gigs/${gig._id}`)
 //    history.push(`/gigs/${nextId}`)
     }).catch((error) => {
         console.log("error editing event", error)

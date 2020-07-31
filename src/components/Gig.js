@@ -57,7 +57,7 @@ const Gig = ({ history, gig, showControls }) => {
                 type: "applyGig",
                 data: [gig, ...updatedGigs]
             })
-            history.push("/gigs")
+            history.push("/profile")
         }).catch((error) => {
             console.log("error applying to event", error)
         })

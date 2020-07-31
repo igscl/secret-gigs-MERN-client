@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {divStyles, inputStyles, labelStyles} from '../styles'
+// import {divStyles, inputStyles, labelStyles} from '../styles'
 import {useGlobalState} from '../config/globalState' 
 import {setUserInSessionStorage} from '../services/authServices'
 import {registerUser} from '../services/authServices'
@@ -50,7 +50,7 @@ const Register = ({history}) => {
                 type: "setLoggedInUserIsAdmin",
                 data: response.user.isAdmin
             })
-            history.push("/")
+            history.push("/profile")
         })
         .catch(error => {
             setErrorMessage("Something went wrong");
