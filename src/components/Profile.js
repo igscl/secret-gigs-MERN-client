@@ -22,15 +22,16 @@ function Profile() {
     // const {username, email, phoneNumber, eventsApplied} = user
 
     return (
-        <div>
+        
+        <div className>
             {/* {posts.map(post =>  (post.id < 2) && <Post key={post.id} title={post.title} />} */}
             {/* applicants.find(x => (x.username === "superuser" && x.accepted === false)) */}
-            {loggedInUser && <header>{loggedInUser}</header>}
-            <h2>Accepted Events!</h2>
+            <p></p>
+            {/* accepted events: */}
             {userEvents && userEvents.map((event, index)=> (
             (event.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && <Gig key={event._id} gig={event} showControls={false}/>)
             )}
-            <h2>Non-accepted Events!</h2>
+            {/* non-accepted events */}
             {userEvents && userEvents.map((event, index)=> (
             (event.applicants.find(x => (x.username === loggedInUser && x.accepted === false))) && <Gig key={event._id} gig={event} showControls={false}/>)
             )}

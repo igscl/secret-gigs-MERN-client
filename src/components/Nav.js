@@ -95,7 +95,7 @@ const Navi = () => {
             href="/"
             title="Home"
           >
-            Home
+            {"Home" && loggedInUser}
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
