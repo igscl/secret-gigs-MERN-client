@@ -35,11 +35,11 @@ describe('User login', () => {
         cy.get('[data-cy=login-form]').should('be.visible')
       })
     it('should succesfully login a user', () => {
-        const {username, password} = fixtures.registeredUser;
+        // const {username, password} = fixtures.registeredUser;
         cy.get('[data-cy=login]').click()
         cy.get('[data-cy=login-form]').should('be.visible');
-        cy.get('[data-cy=username]').type(username)
-        cy.get('[data-cy=password]').type(password)
+        cy.get('[data-cy=username]').type("lulu")
+        cy.get('[data-cy=password]').type("password")
         cy.get('[data-cy=login-button]').click()
         cy.get('[data-cy=logout]').should('be.visible')
         
@@ -49,26 +49,26 @@ describe('User login', () => {
 
 describe('User applies for an event', () => {
     it('should let user to the event of their choice', () => {
-        const {username, password} = fixtures.registeredUser
+        // const {username, password} = fixtures.registeredUser
         cy.get('[data-cy=login]').click()
         cy.get('[data-cy=login-form]').should('be.visible')
-        cy.get('[data-cy=username]').type(username)
-        cy.get('[data-cy=password]').type(password)
+        cy.get('[data-cy=username]').type("lulu")
+        cy.get('[data-cy=password]').type("password")
         cy.get('[data-cy=login-button]').click()
         cy.get('[data-cy=gigs]').click()
-        cy.contains(fixtures.appliedGig.name).click({ force: true })
+        cy.get('[data-cy=gigTitle]').first().click()
 		cy.get("[data-cy=apply-button").click()
     })
 })
 
 describe('User Logout', () => {
     it('should succesfully logout a user', () => {
-        const {username, password} = fixtures.registeredUser
+        // const {username, password} = fixtures.registeredUser
         cy.get('[data-cy=login]').click()
         cy.get('[data-cy=login-form]').should('be.visible')
-        cy.get('[data-cy=username]').type(username)
-        cy.get('[data-cy=password]').type(password)
+        cy.get('[data-cy=username]').type("lulu")
+        cy.get('[data-cy=password]').type("password")
         cy.get('[data-cy=login-button]').click()
-		   cy.get('[data-cy=logout]').click()
+		cy.get('[data-cy=logout]').click()
     });
 });
