@@ -106,6 +106,7 @@ const Gig = ({ history, gig, showControls }) => {
                             </Card.Text>
                         </Card.Body>
                     </Card>
+                    <div className="m-3">
                     <p>General Location: {generalLocation}</p>
                     <p>Capacity: {capacity}</p>
                     {gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && (
@@ -114,17 +115,18 @@ const Gig = ({ history, gig, showControls }) => {
                                         <span role="img" aria-label="sheep">🎉</span>
                                     </p>
                                 )}
+                    </div>
                     {showControls && loggedInUserIsAdmin && (
                                     <div>
-                                        <button className="btn btn-primary btn-lg btn-block" data-cy="editGigButton" onClick={handleEdit}>Update</button>
-                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleDelete}>Delete</button>
-                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleSelect} >Select Users</button>
+                                        <button className="btn btn-primary btn-lg btn-block" data-cy="editGigButton" onClick={handleEdit}>Update</button> 
+                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleDelete}>Delete</button> 
+                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleSelect} >Select Users</button> 
 
                                     </div>
                                 )}
                                 {showControls && (
                                     <div>
-                                        <button className="btn btn-primary btn-lg btn-block" data-cy="apply-button" onClick={handleApply} >Apply!</button>
+                                        <button className="btn btn-primary btn-lg btn-block mt-2" data-cy="apply-button" onClick={handleApply}>Apply!</button>
                                     </div>
                                 )}
                 </Col>
