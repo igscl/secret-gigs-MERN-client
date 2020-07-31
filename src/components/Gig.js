@@ -96,7 +96,7 @@ const Gig = ({ history, gig, showControls }) => {
                         // style={{ width: '50%' }}
                         className="mb-2"
                     >
-                        <Card.Header>{(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("ACCEPTED!") : ("Pending Acceptance")}</Card.Header>
+                        <Card.Header>{(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("ACCEPTED!") : ("")}</Card.Header>
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Text>
