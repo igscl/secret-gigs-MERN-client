@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 
+
+
 const Gig = ({ history, gig, showControls }) => {
 
     const { store, dispatch } = useGlobalState();
@@ -118,15 +120,15 @@ const Gig = ({ history, gig, showControls }) => {
                     </div>
                     {showControls && loggedInUserIsAdmin && (
                                     <div>
-                                        <button className="btn btn-primary btn-lg btn-block" data-cy="editGigButton" onClick={handleEdit}>Update</button> 
-                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleDelete}>Delete</button> 
-                                        <button className="btn btn-primary btn-lg btn-block" onClick={handleSelect} >Select Users</button> 
+                                        <button className="btn btn-dark btn-lg btn-block" data-cy="editGigButton" onClick={handleEdit}>Update</button> 
+                                        <button className="btn btn-dark btn-lg btn-block" onClick={handleDelete}>Delete</button> 
+                                        <button className="btn btn-dark btn-lg btn-block" onClick={handleSelect} >Select Users</button> 
 
                                     </div>
                                 )}
                                 {showControls && (
                                     <div>
-                                        <button className="btn btn-primary btn-lg btn-block mt-2" data-cy="apply-button" onClick={handleApply}>Apply!</button>
+                                        <button className="btn btn-dark btn-lg btn-block mt-2" data-cy="apply-button" onClick={handleApply}>Apply!</button>
                                     </div>
                                 )}
                 </Col>
