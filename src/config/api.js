@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const deployedServer = "https://secret-gigs.herokuapp.com"
+// const deployedServer = "https://secret-gigs.herokuapp.com"
 
 
 //create an axios instance 
