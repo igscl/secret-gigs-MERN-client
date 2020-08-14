@@ -19,7 +19,7 @@ const Register = ({history}) => {
     const initialFormState = {
         username: "",
         email: "",
-        phoneNumber: "",
+        phoneNumber: "+61",
         password: ""
     } 
 
@@ -53,12 +53,10 @@ const Register = ({history}) => {
             history.push("/profile")
         })
         .catch(error => {
-            setErrorMessage("Something went wrong");
+            setErrorMessage("Something went wrong, try changing your username");
         })
     }
-//         registerUser(userDetails)
-//         history.push("/")
-// }
+
     
     return (
 
@@ -78,7 +76,7 @@ const Register = ({history}) => {
                         <Form.Control data-cy="email" required type="email" value= {userDetails.email}  name="email" placeholder="Enter an email" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Phone number</Form.Label>
+    <Form.Label>Phone number (+61 format, no zero at start. If your number is 0400 123 456, then your number is +61400123456</Form.Label>
                         <Form.Control data-cy="phone-number" required type="phone number" value= {userDetails.phoneNumber}  name="phoneNumber" placeholder="Enter a phone number" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
@@ -90,27 +88,6 @@ const Register = ({history}) => {
             </Col>
         </Row>
     </Container >
-        // <form data-cy="register-form" onSubmit={handleSubmit}>
-        //     {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
-        //     <div style={divStyles}>
-        //         <label style={labelStyles}>Username</label>
-        //         <input style={inputStyles} data-cy="username" required type="text" value= {userDetails.username} name="username" placeholder="Enter a username" onChange={handleChange}></input>
-        //     </div>
-        //     <div style={divStyles}>
-        //         <label style={labelStyles}>Email</label>
-        //         <input style={inputStyles} data-cy="email" required type="email" value= {userDetails.email}  name="email" placeholder="Enter an email" onChange={handleChange}></input>
-        //     </div>
-        //     <div style={divStyles}>
-        //         <label style={labelStyles}>Phone number</label>
-        //         <input style={inputStyles} data-cy="phone-number" required type="phone number" value= {userDetails.phoneNumber}  name="phoneNumber" placeholder="Enter a phone number" onChange={handleChange}></input>
-        //     </div>
-        //     <div style={divStyles}>
-        //         <label style={labelStyles}>Password</label>
-        //         <input style={inputStyles} data-cy="password" required type="password" value= {userDetails.password} name="password" placeholder="Enter a password" onChange={handleChange}></input>
-        //     </div>
-        //     <input data-cy="register-button" type="submit" value="Register"></input>
-            
-        // </form>
     )
 
 }
