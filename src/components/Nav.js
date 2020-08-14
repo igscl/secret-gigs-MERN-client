@@ -89,7 +89,7 @@ const Navi = () => {
     return (
         <Navbar expand="lg">
       <Container>
-        <div className="navbar-translate">
+        <div className="navbar-translate text-uppercase">
           <NavbarBrand
             data-placement="bottom"
             href="/"

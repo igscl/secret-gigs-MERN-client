@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from "reactstrap";
-import '../assets/css/styles.css'
+// import '../assets/css/styles.css'
 
 
 const Home = () => {

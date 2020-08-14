@@ -90,7 +90,7 @@ const Gig = ({ history, gig, showControls }) => {
         <Container>
             <p></p>
             <Row className="row justify-content-md-center">
-                <Col className="col-5">
+                <Col className="col col-md-5">
                     <Card
                         bg={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("light")}
                         key={(gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true)))) ? ("success") : ("light")}
