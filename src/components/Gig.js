@@ -28,7 +28,7 @@ const Gig = ({ history, gig, showControls }) => {
     //     fontSize: '1em'
     // }
 
-    const { name, date, generalLocation, specificLocation, capacity } = gig
+    const { name, date, generalLocation, specificLocation, capacity, applicants } = gig
     // const allowEditDelete = loggedInUser && loggedInUser === gig.username
 
     //handle the delete button 
@@ -117,6 +117,35 @@ const Gig = ({ history, gig, showControls }) => {
                                         <span role="img" aria-label="sheep">🎉</span>
                                     </p>
                                 )}
+                            {loggedInUserIsAdmin && (gig.applicants.find(x => (x.accepted === true))) &&
+                            <p>Accepted Users:  
+                            
+
+                                {applicants.map(item => (
+                                    (item.accepted &&
+                                    <li>{item.accepted && item.username}</li>
+                                    )
+                                ))}
+
+                            </p>
+
+
+                            }
+                            {loggedInUserIsAdmin && (gig.applicants.find(x => (x.accepted === false))) &&
+                            <p>Non-accepted Users:  
+                            
+
+                                {applicants.map(item => (
+                                    (!item.accepted &&
+                                    <li>{!item.accepted && item.username}</li>
+                                    )
+                                    ))}
+
+                            </p>
+
+
+                            }
+                   
                     </div>
                     {showControls && loggedInUserIsAdmin && (
                                     <div>
