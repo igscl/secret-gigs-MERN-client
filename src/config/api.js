@@ -9,5 +9,4 @@ export default axios.create(
         baseURL: deployedServer || 'http://localhost:3003',
         timeout: 5000,
         withCredentials: true
-
     })
