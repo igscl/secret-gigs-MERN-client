@@ -111,6 +111,9 @@ const Gig = ({ history, gig, showControls }) => {
                     <div className="m-3">
                     <p>General Location: {generalLocation}</p>
                     <p>Capacity: {capacity}</p>
+                    <p>{`Number of Applicants: `}
+                            {gig.applicants.filter(x => x).length}
+                    </p>
                     {gig.applicants && (gig.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && (
                                     <p>Specific Location: <span role="img" aria-label="sheep">🎉</span>
                                         {specificLocation}
@@ -123,7 +126,8 @@ const Gig = ({ history, gig, showControls }) => {
 
                                 {applicants.map(item => (
                                     (item.accepted &&
-                                    <li>{item.accepted && item.username}</li>
+                                        
+                                    <li key={parseInt(item.phoneNumber)}>{item.accepted && item.username}</li>
                                     )
                                 ))}
 
@@ -137,14 +141,17 @@ const Gig = ({ history, gig, showControls }) => {
 
                                 {applicants.map(item => (
                                     (!item.accepted &&
-                                    <li>{!item.accepted && item.username}</li>
+                                    <li key={parseInt(item.phoneNumber)}>{!item.accepted && item.username}</li>
                                     )
                                     ))}
 
                             </p>
 
+                            
 
                             }
+
+
                    
                     </div>
                     {showControls && loggedInUserIsAdmin && (
