@@ -27,6 +27,7 @@ function Profile() {
             {/* {posts.map(post =>  (post.id < 2) && <Post key={post.id} title={post.title} />} */}
             {/* applicants.find(x => (x.username === "superuser" && x.accepted === false)) */}
             <p></p>
+            <p className= "row justify-content-center"> This is your Profile, you can see your applied gigs here. To apply to gigs click on the "GIGS" menu</p>
             {/* accepted events: */}
             {userEvents && userEvents.map((event, index)=> (
             (event.applicants.find(x => (x.username === loggedInUser && x.accepted === true))) && <Gig key={event._id} gig={event} showControls={false}/>)
